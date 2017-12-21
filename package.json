@@ -1,0 +1,12 @@
+{
+  "name": "zeurcv",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "jquery": "^2.2.4",
+    "meteor-node-stubs": "^0.3.2"
+  }
+}
