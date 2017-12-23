@@ -1,4 +1,16 @@
 import {googleProfile} from './_providers/google';
+import {facebookProfile} from './_providers/facebook';
+import {linkedinProfile} from './_providers/linkedin';
+
+/**
+ * @constant providersInfo
+ * @type {{google: googleProfile, facebook: facebookProfile, linkedin: linkedinProfile}}
+ */
+const providersInfo = {
+  google: googleProfile,
+  facebook: facebookProfile,
+  linkedin: linkedinProfile
+};
 
 const admins = ['teamco@gmail.com'];
 const managers = [];
@@ -34,38 +46,7 @@ function _defineRoles(user, roles) {
  * @private
  */
 function _getProviderInfo(provider, user) {
-  let opts = {};
-  const info = user.services[provider];
-  switch (provider) {
-    case 'facebook':
-      opts = {
-        email: info.email,
-        picture: 'http://graph.facebook.com/' + info.id + '/picture/?type=small',
-        link: info.link
-      };
-      break;
-    case 'github':
-      opts = {
-        email: info.email,
-        link: ''
-      };
-      break;
-    case 'google':
-      opts = googleProfile(user, info);
-      break;
-    case 'twitter':
-      opts = {
-        email: info.screenName,
-        link: ''
-      };
-      break;
-    default:
-      opts = {
-        email: user.emails[0].address,
-        link: '/users/' + user._id
-      };
-      break;
-  }
+  const opts = providersInfo[provider](user, user.services[provider]);
   if (!opts.picture) {
     opts.picture = Gravatar.imageUrl(opts.email, {});
   }

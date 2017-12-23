@@ -40,7 +40,7 @@ coffeescript-compiler
 jquery
 accounts-ui
 accounts-google
-pauli:accounts-linkedin
 service-configuration
 alanning:roles
 tap:i18n
+jonperl:accounts-linkedin
