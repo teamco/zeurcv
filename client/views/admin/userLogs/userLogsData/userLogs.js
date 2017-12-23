@@ -1,9 +1,7 @@
-import {runTemplateHelper} from '../../../../../lib/utils';
-import {logsUser, getUser} from '../../../../../lib/users';
-import {subscribe} from '../../../template';
+import {logsUser} from '../../../../../lib/logs';
 import {userLog} from '../../../../../model/userLog.model';
 import {userLogPages} from '../../../../../model/userLog.model';
-import {sharedMethods} from '../../../../../lib/logs'
+import {sharedMethods} from '../../../../../lib/logs';
 
 /**
  * @constant HEADS
@@ -12,7 +10,6 @@ import {sharedMethods} from '../../../../../lib/logs'
 export const HEADS = ['User action', 'IP', 'Created at', 'Show'];
 
 Template.userLogsData.onCreated(() => {
-  subscribe(['users', 'userLogs', 'errorLogs']);
   const user = logsUser();
   if (user && user._id) {
     userLogPages.set({
@@ -27,11 +24,11 @@ Template.userLogsData.helpers({
 
   /**
    * @method userLogsCount
-   * @returns {any}
+   * @returns {number}
    */
   userLogsCount: () => {
     const user = logsUser();
-    return user ?
+    return user && user._id ?
         userLog.find({userId: user._id}).count() :
         userLog.find().count();
   },
@@ -39,8 +36,6 @@ Template.userLogsData.helpers({
   getHeads: HEADS,
   isError: sharedMethods.isError
 });
-
-Template.userLogsDataItem.onCreated(() => subscribe(['users', 'userLogs', 'errorLogs']));
 
 Template.userLogsDataItem.helpers({
   style: function() {

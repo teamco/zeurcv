@@ -1,13 +1,11 @@
-import {subscribe} from '../../../template';
-
-Template.usersDashboard.onCreated(() => subscribe(['users', 'userStatus']));
-
 Template.usersDashboard.helpers({
 
   /**
    * @method registeredUsers
    */
-  registeredUsers: () => Accounts.users.find().count(),
+  registeredUsers: () => {
+    return Accounts.users.find().count();
+  },
 
   /**
    * @method onlineUsers

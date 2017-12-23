@@ -1,4 +1,3 @@
-import {subscribe} from '../../../template';
 import {userLog} from '../../../../../model/userLog.model';
 import {errorLog} from '../../../../../model/errorLog.model';
 import {errorLogPages} from '../../../../../model/errorLog.model';
@@ -95,7 +94,6 @@ Template.errorLogData.events({
 });
 
 Template.errorLogsData.onCreated(function() {
-  subscribe(['users', 'userLogs', 'errorLogs']);
   const user = logsUser();
   if (user && user._id) {
     errorLogPages.set({

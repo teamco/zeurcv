@@ -36,7 +36,6 @@ function _filterByUser(user) {
 }
 
 Template.errorLogsData.onCreated(function() {
-  subscribe(['users', 'userStatus', 'userLogs', 'errorLogs']);
   const user = logsUser();
   if (user && user._id) {
     errorLogPages.set({
@@ -74,8 +73,6 @@ Template.errorLogsData.helpers({
     return errorLog.find().count();
   }
 });
-
-Template.errorLogsDataItem.onCreated(() => subscribe(['users', 'userStatus', 'userLogs', 'errorLogs']));
 
 Template.errorLogsDataItem.helpers({
   style: _style

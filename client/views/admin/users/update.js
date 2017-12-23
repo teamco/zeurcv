@@ -1,63 +1,66 @@
+import {throwError} from '../../../../lib/logs';
+import {getUser} from '../../../../lib/users';
+
 function _filterValueByType(input, type) {
 
-    type = type || input.type;
+  type = type || input.type;
 
-    switch (type) {
-        case 'date':
-            return new Date(input.value);
-            break;
-        case 'checkbox':
-            return input.checked;
-            break;
-        default:
-            return input.value;
-            break;
-    }
+  switch (type) {
+    case 'date':
+      return new Date(input.value);
+      break;
+    case 'checkbox':
+      return input.checked;
+      break;
+    default:
+      return input.value;
+      break;
+  }
 }
 
 function _collectData($elements) {
 
-    var data = {};
+  var data = {};
 
-    _.each($elements, function (input) {
-        data[input.name] = _filterValueByType(input, input.dataset.type);
-    });
+  _.each($elements, function(input) {
+    data[input.name] = _filterValueByType(input, input.dataset.type);
+  });
 
-    return data;
+  return data;
 }
 
 Template.editUser.events({
 
-    'click a[data-type="update-user"]': function (event) {
+  'click a[data-type="update-user"]': function(event) {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        var $profile = $('#profile').find('input:enabled, textarea:enabled, select:enabled'),
-            $access = $('#access').find('input:enabled'),
-            profile = _collectData($profile),
-            access = _collectData($access);
+    var $profile = $('#profile').find('input:enabled, textarea:enabled, select:enabled'),
+        $access = $('#access').find('input:enabled'),
+        profile = _collectData($profile),
+        access = _collectData($access);
 
-        var userId = getUser()._id;
+    var userId = getUser()._id;
 
-        Meteor.call(
-            'updateUser', {
-                userId: userId,
-                profile: profile,
-                access: access
-            },
-            function (error, user) {
+    Meteor.call(
+        'updateUser', {
+          userId: userId,
+          profile: profile,
+          access: access
+        },
+        function(error, user) {
 
-                if (throwError(error)) {
-                    return false;
-                }
+          if (throwError(error)) {
+            return false;
+          }
 
-                Bert.alert(
-                    TAPi18n.__('user_updated', user.profile.email),
-                    'info'
-                );
+          Bert.alert(
+              TAPi18n.__('user_updated', user.profile.email),
+              'info'
+          );
 
-                //Router.go('/setting/users');
-            }
-        );
-    }
+          //Router.go('/setting/users');
+        }
+    );
+  }
 });
