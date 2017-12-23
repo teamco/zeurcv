@@ -3,6 +3,7 @@ import {subscribe} from '../../../template';
 import {userLog} from '../../../../../model/userLog.model';
 import {errorLog} from '../../../../../model/errorLog.model';
 import {errorLogPages} from '../../../../../model/errorLog.model';
+import {isAdmin} from '../../../../../lib/users';
 
 /**
  * @constant HEADS
@@ -27,12 +28,7 @@ function _style(fixed) {
  * @private
  */
 function _filterByUser(user) {
-  return _.map(
-      userLog.find({userId: user._id}).fetch(),
-      function(log) {
-        return log._id;
-      }
-  );
+  return _.map(userLog.find({userId: user._id}).fetch(), log => log._id);
 }
 
 Template.errorLogsData.onCreated(function() {
@@ -59,18 +55,11 @@ Template.errorLogsData.helpers({
     const user = logsUser();
     if (user && user._id) {
       return errorLog.find({
-        userLogId: {
-          $in: _.map(
-              userLog.find({userId: user._id}).fetch(),
-              function(log) {
-                return log._id;
-              }
-          )
-        }
+        userLogId: {$in: _filterByUser(user)}
       }).count();
     }
 
-    return errorLog.find().count();
+    return 0;
   }
 });
 

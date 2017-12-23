@@ -28,10 +28,10 @@ Template.logManager.helpers({
   /**
    * @method userLogsUrl
    */
-  userLogsUrl: () => _logUrl('logs'),
+  userLogsUrl: () => _logUrl('/logs'),
 
   /**
    * @method errorLogsUrl
    */
-  errorLogsUrl: () => _logUrl('errors')
+  errorLogsUrl: () => _logUrl('/errors')
 });

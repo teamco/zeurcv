@@ -3,9 +3,7 @@ Template.usersDashboard.helpers({
   /**
    * @method registeredUsers
    */
-  registeredUsers: () => {
-    return Accounts.users.find().count();
-  },
+  registeredUsers: () => Accounts.users.find().count(),
 
   /**
    * @method onlineUsers

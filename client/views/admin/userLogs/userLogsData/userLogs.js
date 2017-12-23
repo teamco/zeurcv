@@ -12,11 +12,7 @@ export const HEADS = ['User action', 'IP', 'Created at', 'Show'];
 Template.userLogsData.onCreated(() => {
   const user = logsUser();
   if (user && user._id) {
-    userLogPages.set({
-      filters: {
-        userId: user._id
-      }
-    });
+    userLogPages.set({filters: {userId: user._id}});
   }
 });
 
@@ -28,9 +24,7 @@ Template.userLogsData.helpers({
    */
   userLogsCount: () => {
     const user = logsUser();
-    return user && user._id ?
-        userLog.find({userId: user._id}).count() :
-        userLog.find().count();
+    return user && user._id ? userLog.find({userId: user._id}).count() : 0;
   },
 
   getHeads: HEADS,
