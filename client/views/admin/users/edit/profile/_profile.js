@@ -1,7 +1,5 @@
-import {getUserProfile} from '../../../../../../lib/utils';
+import {getUserProfile} from '../../../../../../lib/users';
 
 Template.editUserProfile.helpers({
-  selectedCountry: function(country) {
-    return getUserProfile().userCountry === country;
-  }
+  selectedCountry: country => getUserProfile().userCountry === country
 });

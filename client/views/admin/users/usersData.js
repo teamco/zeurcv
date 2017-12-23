@@ -2,6 +2,7 @@ import {isCurrentUser, isAdmin, currentUser, usersCollection} from '../../../../
 import {logsUser, throwError} from '../../../../lib/logs';
 import {subscribe} from '../../template';
 import {userPages} from '../../../../model/users.model';
+import {runTemplateHelper} from '../../../../lib/utils';
 
 subscribe(['users', 'userStatus', 'roles', 'userLogs', 'errorLogs']);
 
@@ -49,20 +50,10 @@ Template.usersData.onCreated(() => {
 Template.usersData.helpers({
   getHeads: HEADS,
   usersCount: () => isAdmin() ? usersCollection().count() : 1,
-  allUsers: () => isAdmin() ? usersCollection().fetch() : [currentUser()],
-  labelClass: _id => {
-    const status = usersCollection(_id).status;
-    let style = 'label-default';
-    if (status && status.idle) style = 'label-warning';
-    if (status && status.online) style = 'label-success';
-    return style;
-  },
-  isCurrentUser: isCurrentUser
+  allUsers: () => isAdmin() ? usersCollection().fetch() : [currentUser()]
 });
 
 Template.usersDataItem.helpers({
-  getHeads: HEADS,
-  usersCount: () => isAdmin() ? usersCollection().count() : 1,
   allUsers: () => isAdmin() ? usersCollection().fetch() : [currentUser()],
   labelClass: _id => {
     const status = usersCollection(_id).status;

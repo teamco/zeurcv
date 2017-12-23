@@ -3,90 +3,46 @@ import {subscribe} from '../../../template';
 
 Template.editUser.onCreated(() => subscribe(['users', 'userStatus', 'profile', 'roles']));
 
-Template.editUser.onRendered(function() {
+Template.editUser.onRendered(() => {
   this.$('.datetimepicker').datetimepicker({
     format: 'MMMM DD, YYYY'
   });
 });
 
 Template.editUser.helpers({
-  info: function() {
+  info: () => ({
+    _id: () => getUser()._id,
+    email: () => getUser().profile.email,
+    provider: () => getUser().profile.provider,
+    profile: () => getUser().profile.link,
+    createdAt: () => getUser().createdAt
+  }),
+  status: () => {
+    const status = getUser().status || {lastLogin: {}};
     return {
-      _id: function() {
-        return getUser()._id;
-      },
-      email: function() {
-        return getUser().profile.email;
-      },
-      provider: function() {
-        return getUser().profile.provider;
-      },
-      profile: function() {
-        return getUser().profile.link;
-      },
-      createdAt: function() {
-        return getUser().createdAt;
-      }
+      idle: () => status.idle ? 'Idle' : 'Active',
+      online: () => status.online ? 'Online' : 'Offline',
+      ipAddress: () => status.lastLogin.ipAddr,
+      userAgent: () => status.lastLogin.userAgent,
+      lastLogin: () => status.lastLogin.date
     };
   },
-  status: function() {
-    const status = getUser().status || {lastLogin:{}};
+  profile: () => ({
+    firstName: () => getUserProfile().userFirstName || getUserName().split(' ')[0],
+    middleName: () => getUserProfile().userMiddleName,
+    lastName: () => getUserProfile().userLastName || getUserName().split(' ')[1],
+    birthday: () => getUserProfile().userBirthday,
+    country: () => getUserProfile().userCountry,
+    address: () => getUserProfile().userAddress
+  }),
+  access: () => {
+    const roles = getUserRoles();
     return {
-      idle: function() {
-        return status.idle ? 'Idle' : 'Active';
-      },
-      online: function() {
-        return status.online ? 'Online' : 'Offline';
-      },
-      ipAddress: function() {
-        return status.lastLogin.ipAddr;
-      },
-      userAgent: function() {
-        return status.lastLogin.userAgent;
-      },
-      lastLogin: function() {
-        return status.lastLogin.date;
-      }
-    };
-  },
-  profile: function() {
-    return {
-      firstName: function() {
-        return getUserProfile().userFirstName || getUserName().split(' ')[0];
-      },
-      middleName: function() {
-        return getUserProfile().userMiddleName;
-      },
-      lastName: function() {
-        return getUserProfile().userLastName || getUserName().split(' ')[1];
-      },
-      birthday: function() {
-        return getUserProfile().userBirthday;
-      },
-      country: function() {
-        return getUserProfile().userCountry;
-      },
-      address: function() {
-        return getUserProfile().userAddress;
-      }
-    };
-  },
-  access: function() {
-
-    var roles = getUserRoles();
-
-    return {
-      availableRoles: function() {
-        return _.map(Roles.getAllRoles().fetch(), function(role) {
-          return {
-            name: role.name,
-            checked: _.contains(roles, role.name)
-          };
-        });
-      },
-      currentRoles: function() {
-        return roles.join(', ');
-      }
+      availableRoles: () => _.map(Roles.getAllRoles().fetch(), role => ({
+        name: role.name,
+        checked: _.contains(roles, role.name)
+      })),
+      currentRoles: () => roles.join(', ')
     };
   }
 });

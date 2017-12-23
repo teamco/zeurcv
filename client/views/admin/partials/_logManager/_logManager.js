@@ -27,11 +27,13 @@ Template.logManager.helpers({
 
   /**
    * @method userLogsUrl
+   * @returns {string}
    */
   userLogsUrl: () => _logUrl('/logs'),
 
   /**
    * @method errorLogsUrl
+   * @returns {string}
    */
   errorLogsUrl: () => _logUrl('/errors')
 });
