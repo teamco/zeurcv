@@ -1,0 +1,10 @@
+<template name="usersDashboard">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                {{> iBox color='yellow' info=registeredUsers title='User management' type='user' linkTo='users'}}
+                {{> iBox color='aqua' info=onlineUsers title='User online' type='user' linkTo='online-users'}}
+            </div>
+        </div>
+    </div>
+</template>

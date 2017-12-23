@@ -1,0 +1,13 @@
+<template name="errorLogsData">
+    {{> paginationTable heads=getHeads style='error-logs' pages=pages pagesNav=pagesNav}}
+</template>
+
+<template name="errorLogsDataItem">
+    <tr>
+        <td>{{error}}</td>
+        <td>{{errorType}}</td>
+        <td>{{reason}}</td>
+        <td>{{formatDate updatedAt 'long'}}</td>
+        <td>{{> moreInfoLink linkTo='errors' id=_id style=style}}</td>
+    </tr>
+</template>

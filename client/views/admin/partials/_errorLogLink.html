@@ -1,0 +1,5 @@
+<template name="errorLogLink">
+    {{#if isError}}
+        <a href="/dashboard/errors/{{isError._id}}" class="label label-danger">Error log</a>
+    {{/if}}
+</template>

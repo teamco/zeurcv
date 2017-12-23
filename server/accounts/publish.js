@@ -1,4 +1,4 @@
-import {runAsAdmin} from '../../lib/utils';
+import {runAsAdmin} from '../../lib/users';
 
 Meteor.publish('users', function() {
   return runAsAdmin(this.userId, Meteor.users.find());

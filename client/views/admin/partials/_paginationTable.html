@@ -1,0 +1,19 @@
+<template name="paginationTable">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table {{style}}">
+                <thead>
+                <tr>
+                    {{#each heads}}
+                        <th>{{this}}</th>
+                    {{/each}}
+                </tr>
+                </thead>
+                <tbody>
+                {{> pages}}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">{{> pagesNav}}</div>
+    </div>
+</template>

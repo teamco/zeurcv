@@ -30,12 +30,12 @@ export const linkedinProfile = (user, info) => {
         'twitter-accounts',
         'primary-twitter-account'];
 
-  const requestUrl = 'https://api.linkedin.com/v1/people/~:(' +
-      _.union(basicProfileFields, emailFields, fullProfileFields, contactInfoFields).join(',') + ')';
+  const params = _.union(basicProfileFields, emailFields, fullProfileFields, contactInfoFields);
+  const requestUrl = 'https://api.linkedin.com/v1/people/~:(' + params.join(',') + ')';
 
   /**
    * @constant response
-   * @type {{error, data: {formattedName, emailAddress, siteStandardProfileRequest, pictureUrl}}}
+   * @type {{error, data: {formattedName, positions, emailAddress, siteStandardProfileRequest, pictureUrl}}}
    */
   const response = Meteor.http.get(requestUrl, {
     headers: {'User-Agent': 'Meteor/1.0'},

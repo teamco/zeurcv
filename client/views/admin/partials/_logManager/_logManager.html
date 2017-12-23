@@ -1,0 +1,10 @@
+<template name="logManager">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                {{> iBox color='yellow' info=userLogsCount title='User log' type='time' linkTo=userLogsUrl}}
+                {{> iBox color='red' info=errorLogsCount title='Error log' type='exclamation-sign' linkTo=errorLogsUrl}}
+            </div>
+        </div>
+    </div>
+</template>

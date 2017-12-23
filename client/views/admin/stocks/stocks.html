@@ -1,0 +1,25 @@
+<template name="stocksDashboard">
+    <h2>Stocks</h2>
+
+    <div class="row">
+        {{#each stocks}}
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-{{stockChange Change}}">
+                    <div class="inner">
+                        <h3>{{LastTradePriceOnly}}</h3>
+
+                        <p>{{Name}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="glyphicon glyphicon-signal"></i>
+                    </div>
+                    <a class="small-box-footer">
+                        <i class="glyphicon glyphicon-chevron-{{stockChange Change}}"></i>
+                        {{Change}}
+                    </a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>

@@ -1,0 +1,69 @@
+td.user-info,
+td.user-info a {
+    white-space: nowrap;
+}
+
+td.user-info img {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    display: inline-block;
+    overflow: hidden;
+    box-shadow: 1px 1px 5px #333;
+}
+
+.table.user-data td {
+    vertical-align: middle;
+}
+
+.table.user-data td:last-child {
+    white-space: nowrap;
+}
+
+ul.notifications {
+    position: fixed;
+}
+
+#login-dropdown-list {
+    right: 0;
+    left: auto;
+}
+
+div.show-user {
+    margin-top: 2em;
+}
+
+div.show-user textarea {
+    resize: vertical;
+    white-space: normal;
+}
+
+div.show-user textarea[disabled="disabled"] {
+    resize: none;
+}
+
+div.show-user form {
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 2em 2em 1em;
+}
+
+label[for="user-roles"] {
+    width: 100%;
+}
+
+div.show-user .input-group-addon {
+    min-width: 10em;
+    text-align: left;
+}
+
+div.show-user .mb {
+    margin-bottom: 0.5em;
+}
+
+div.show-user .action {
+    min-width: initial;
+    text-align: center;
+}

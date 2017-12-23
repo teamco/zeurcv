@@ -1,0 +1,36 @@
+<template name="userLogData">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table user-logs">
+                <thead>
+                <tr>
+                    {{#each getHeads}}
+                        <th>{{this}}</th>
+                    {{/each}}
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <p>{{> userLink userId=userLog.userId}}</p>
+                        <p><a href="{{userLog.url}}">{{userLog.url}}</a></p>
+                    </td>
+                    <td>{{userLog.clientAddress}}</td>
+                    <td>{{formatDate userLog.createdAt 'long'}}</td>
+                    <td>
+                        {{> errorLogLink isError=isError}}
+                        {{> backTo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <p><span class="label">Host</span>{{userLog.httpHeaders.host}}</p>
+                        <p><span class="label">Accept language</span>{{acceptLanguage}}</p>
+                        <p><span class="label">User agent</span>{{userAgent}}</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>

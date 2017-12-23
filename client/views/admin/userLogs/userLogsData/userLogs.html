@@ -1,0 +1,15 @@
+<template name="userLogsData">
+    {{> paginationTable heads=getHeads style='user-logs' pages=pages pagesNav=pagesNav}}
+</template>
+
+<template name="userLogsDataItem">
+    <tr>
+        <td>
+            <p>{{> userLink userId=userId}}</p>
+            <p><a href="{{url}}">{{url}}</a></p>
+        </td>
+        <td>{{clientAddress}}</td>
+        <td>{{formatDate createdAt 'long'}}</td>
+        <td>{{> moreInfoLink linkTo='logs' id=_id style=style}}</td>
+    </tr>
+</template>

@@ -1,0 +1,36 @@
+<template name="editUserStatus">
+    <div id="status" class="tab-pane fade">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">Idle</span>
+                <input type="text" disabled="disabled" class="form-control" value="{{status.idle}}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">Status</span>
+                <input type="text" disabled="disabled" class="form-control" value="{{status.online}}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">IP Address</span>
+                <input type="text" class="form-control" disabled="disabled" value="{{status.ipAddress}}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">User agent</span>
+                <textarea class="form-control" disabled="disabled">
+                    {{status.userAgent}}
+                </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">Last login</span>
+                <input type="text" class="form-control" disabled="disabled" value="{{status.lastLogin}}"/>
+            </div>
+        </div>
+    </div>
+</template>

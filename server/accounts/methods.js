@@ -1,9 +1,11 @@
+import {is403} from '../../lib/logs';
+import {accountProfile} from '../../model/accountProfile.model';
+
 Meteor.methods({
 
   /**
    * @method updateUser
    * @param opts
-   * @returns {any}
    */
   updateUser: opts => {
 
@@ -18,7 +20,7 @@ Meteor.methods({
         {multi: true}
     );
 
-    const profile = AccountProfile.findOne({userId: opts.userId});
+    const profile = accountProfile.findOne({userId: opts.userId});
     let method = 'create';
 
     if (profile) {
@@ -34,12 +36,10 @@ Meteor.methods({
     );
 
     console.info(TAPi18n.__('user_roles', JSON.stringify(opts.access)));
-    Meteor.call(
-        'updateAccountRoles', {
-          userId: opts.userId,
-          access: opts.access
-        }
-    );
+    Meteor.call('updateAccountRoles', {
+      userId: opts.userId,
+      access: opts.access
+    });
 
     return Meteor.users.findOne(opts.userId);
   },

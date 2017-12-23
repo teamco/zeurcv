@@ -1,7 +1,12 @@
-import {isAdmin} from '../../lib/utils';
+import {isAdmin} from '../../lib/users';
 
 Meteor.methods({
-  updateAccountRoles: function(opts) {
+
+  /**
+   * @method updateAccountRoles
+   * @param opts
+   */
+  updateAccountRoles: (opts) => {
 
     let roles = Roles.getRolesForUser(opts.userId),
         update = _.compact(_.map(opts.access, function(access, role) {

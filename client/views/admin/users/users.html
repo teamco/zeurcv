@@ -1,0 +1,21 @@
+<template name="usersData">
+    {{> paginationTable heads=getHeads style='user-data' pages=pages pagesNav=pagesNav}}
+</template>
+
+<template name="usersDataItem">
+    {{#each allUsers}}
+        <tr class="{{#if isCurrentUser _id}}current{{/if}}">
+            <td class="user-info">
+                <img src="{{profile.picture}}" alt="{{profile.name}}"/>
+                <a href="{{profile.link}}">{{profile.name}}</a>
+            </td>
+            <td><span class="label {{labelClass _id}}">{{profile.email}}</span></td>
+            <td>{{profile.provider}}</td>
+            <td>{{status.lastLogin.date}}</td>
+            <td>
+                <a href="/dashboard/users/{{_id}}" class="label label-info show-user">Show</a>
+                <a href="/dashboard/users/{{_id}}" class="label label-danger delete-user">Delete</a>
+            </td>
+        </tr>
+    {{/each}}
+</template>

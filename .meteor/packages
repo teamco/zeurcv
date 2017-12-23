@@ -44,3 +44,13 @@ service-configuration
 alanning:roles
 tap:i18n
 jonperl:accounts-linkedin
+khamoud:linkedin-api
+alethes:pages
+themeteorchef:bert
+momentjs:moment
+jparker:gravatar
+mizzao:user-status
+jamiter:pluralize
+underscorestring:underscore.string
+tsega:bootstrap3-datetimepicker
+theduke:bootstrap-modal-prompt
