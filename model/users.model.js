@@ -16,3 +16,5 @@ export const userPages = new Meteor.Pagination(Accounts.users, {
     filters: true
   }
 });
+
+allowModel(Meteor.users);

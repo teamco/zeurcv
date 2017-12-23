@@ -1,13 +1,15 @@
-import {isCurrentUser, throwError} from '../../../../lib/utils';
+import {isCurrentUser, isAdmin, currentUser, usersCollection} from '../../../../lib/users';
+import {logsUser, throwError} from '../../../../lib/logs';
 import {subscribe} from '../../template';
+import {userPages} from '../../../../model/users.model';
+
+subscribe(['users', 'userStatus', 'roles', 'userLogs', 'errorLogs']);
 
 /**
  * @constant HEADS
  * @type {string[]}
  */
 export const HEADS = ['Name', 'Email', 'Provider', 'Last login', 'Actions'];
-
-Template.usersData.onCreated(() => subscribe(['users', 'userStatus']));
 
 Template.usersData.events({
   'click a.delete-user': function(event, template) {
@@ -37,12 +39,33 @@ Template.usersData.events({
   }
 });
 
+Template.usersData.onCreated(() => {
+  const user = logsUser();
+  if (user && user._id && !isAdmin()) {
+    userPages.set({filters: {userId: user._id}});
+  }
+});
+
 Template.usersData.helpers({
   getHeads: HEADS,
-  usersCount: () => Accounts.users.find().count(),
-  allUsers: () => Accounts.users.find().fetch(),
+  usersCount: () => isAdmin() ? usersCollection().count() : 1,
+  allUsers: () => isAdmin() ? usersCollection().fetch() : [currentUser()],
   labelClass: _id => {
-    const status = Accounts.users.findOne(_id).status;
+    const status = usersCollection(_id).status;
+    let style = 'label-default';
+    if (status && status.idle) style = 'label-warning';
+    if (status && status.online) style = 'label-success';
+    return style;
+  },
+  isCurrentUser: isCurrentUser
+});
+
+Template.usersDataItem.helpers({
+  getHeads: HEADS,
+  usersCount: () => isAdmin() ? usersCollection().count() : 1,
+  allUsers: () => isAdmin() ? usersCollection().fetch() : [currentUser()],
+  labelClass: _id => {
+    const status = usersCollection(_id).status;
     let style = 'label-default';
     if (status && status.idle) style = 'label-warning';
     if (status && status.online) style = 'label-success';

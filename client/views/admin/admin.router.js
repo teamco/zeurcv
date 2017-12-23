@@ -41,7 +41,7 @@ const routes = {
     url: '/dashboard/tracking'
   },
   users: {
-    all: () => ({action: _adminRenderer('userData'), name: 'users'}),
+    all: () => ({action: _adminRenderer('usersData'), name: 'users'}),
     one: () => ({action: _adminRenderer('editUser'), name: 'users'}),
     url: '/dashboard/users'
   }

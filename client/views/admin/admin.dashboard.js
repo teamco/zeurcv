@@ -1,3 +1,3 @@
 import {subscribe} from '../template';
 
-subscribe(['users', 'userStatus', 'userLogs', 'errorLogs']);
+subscribe(['users', 'userStatus', 'roles', 'userLogs', 'errorLogs']);
