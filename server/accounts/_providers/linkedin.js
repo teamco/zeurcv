@@ -1,4 +1,4 @@
-import {throwError} from '../../../lib/utils';
+import {throwError} from '../../../lib/logs';
 
 /**
  * @method linkedinProfile
