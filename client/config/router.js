@@ -1,8 +1,9 @@
 import {throwError} from '../../lib/logs';
+import {subscribe} from '../views/template';
 
 FlowRouter.route('/', {
   action: function() {
-    FlowRouter.go('/pageOne');
+    BlazeLayout.render('landingLayout');
   }
 });
 
@@ -30,5 +31,5 @@ const updateUserLog = function() {
 };
 
 // FlowRouter.triggers.enter(requireLogin);
-//FlowRouter.triggers.enter(updateUserLog);
-FlowRouter.triggers.exit(updateUserLog);
+FlowRouter.triggers.enter(updateUserLog);
+// FlowRouter.triggers.exit(updateUserLog);

@@ -1,9 +1,8 @@
 import {getUser, getUserProfile, getUserRoles, getUserName} from '../../../../../lib/users';
 import {subscribe} from '../../../template';
 
-Template.editUser.onCreated(() => subscribe(['users', 'userStatus', 'profile', 'roles']));
-
-Template.editUser.onRendered(() => {
+Template.editUser.onRendered(function() {
+  subscribe(this, ['users', 'userStatus', 'roles']);
   this.$('.datetimepicker').datetimepicker({
     format: 'MMMM DD, YYYY'
   });

@@ -4,7 +4,7 @@ import {allowModel} from './methods';
  * @instance userLog
  * @type {Mongo.Collection}
  */
-export const userLog = new Mongo.Collection('user_log');
+export const userLog = allowModel(new Mongo.Collection('user_log'));
 
 /**
  * @instance userLogPages
@@ -19,8 +19,8 @@ export const userLogPages = new Meteor.Pagination(userLog, {
     createdAt: -1
   },
   availableSettings: {
+    perPage: true,
+    sort: true,
     filters: true
   }
 });
-
-allowModel(userLog);

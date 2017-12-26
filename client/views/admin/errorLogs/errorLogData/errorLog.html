@@ -13,11 +13,11 @@
                 <tr>
                     <td>{{errorLog.error}}</td>
                     <td>{{errorLog.errorType}}</td>
-                    <td>{{errorLog.reason}}</td>
+                    <td class="break">{{errorLog.reason}}</td>
                     <td>{{formatDate errorLog.updatedAt 'long'}}</td>
-                    <td>
+                    <td class="no-break">
                         {{> userLogLink userLogId=errorLog.userLogId}}
-                        <a data-type="error" class="label label-{{style errorLog.fixed}}">Fix error</a>
+                        <a data-type="error" class="label label-{{style errorLog.fixed}}">Fix</a>
                         {{> backTo}}
                     </td>
                 </tr>

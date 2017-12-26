@@ -1,24 +1,36 @@
-import {runTemplateHelper, pageTitle, templateName, throwError, currentUser} from '../../lib/utils';
+import {runTemplateHelper, pageTitle, templateName} from '../../lib/utils';
+import {throwError} from '../../lib/logs';
+import {currentUser} from '../../lib/users';
 
 /**
  * @method subscribe
+ * @param template
  * @param models
+ * @param {function} [fn]
  */
-export const subscribe = models => {
+export const subscribe = (template, models, fn) => {
   if (typeof models === 'string') {
     models = [models];
   }
+  let subs = {};
   for (let i = 0; i < models.length; i++) {
-    Meteor.subscribe(models[i], () => subscribeCallback(models[i]));
+    subs[models[i]] = template.subscribe(models[i]);
   }
-};
 
-/**
- * @method subscribeCallback
- * @param model
- */
-const subscribeCallback = (model) => {
-  // TODO check subscription
+  // Do reactive stuff when subscribe is ready
+  template.autorun(() => {
+    let ready = 1;
+    for (let i = 0; i < models.length; i++) {
+      if (subs[models[i]].ready()) {
+        ready++;
+      }
+    }
+    if (ready < models.length) {
+      return false;
+    } else if (typeof fn === 'function') {
+      fn();
+    }
+  });
 };
 
 Template.body.events({
@@ -110,3 +122,7 @@ Template.registerHelper('redirectToBack', () => {
 
 Template.registerHelper('ellipsis', str => s.prune(str, 100));
 Template.registerHelper('moreInfoUrl', () => FlowRouter.current().path);
+
+Template.registerHelper('isReady', () => Template.instance().pagination.ready());
+Template.registerHelper('templatePagination', () => Template.instance().pagination);
+Template.registerHelper('documents', () => Template.instance().pagination.getPage());

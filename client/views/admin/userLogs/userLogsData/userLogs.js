@@ -2,6 +2,7 @@ import {logsUser} from '../../../../../lib/logs';
 import {userLog} from '../../../../../model/userLog.model';
 import {userLogPages} from '../../../../../model/userLog.model';
 import {sharedMethods} from '../../../../../lib/logs';
+import {subscribe} from '../../../template';
 
 /**
  * @constant HEADS
@@ -9,12 +10,20 @@ import {sharedMethods} from '../../../../../lib/logs';
  */
 export const HEADS = ['User action', 'IP', 'Created at', 'Show'];
 
-Template.userLogsData.onCreated(() => {
-  const user = logsUser();
-  if (user && user._id) {
-    userLogPages.set({filters: {userId: user._id}});
-  }
-});
+/**
+ * @method _configTemplate
+ * @private
+ */
+export const _configTemplate = function() {
+  subscribe(this, ['users', 'userStatus', 'roles', 'userLogs', 'errorLogs'], () => {
+    const user = logsUser();
+    if (user && user._id) {
+      userLogPages.set({filters: {userId: user._id}});
+    }
+  });
+};
+
+Template.userLogsData.onRendered(_configTemplate);
 
 Template.userLogsData.helpers({
 

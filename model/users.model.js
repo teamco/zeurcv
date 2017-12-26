@@ -13,6 +13,8 @@ export const userPages = new Meteor.Pagination(Accounts.users, {
     createdAt: -1
   },
   availableSettings: {
+    perPage: true,
+    sort: true,
     filters: true
   }
 });

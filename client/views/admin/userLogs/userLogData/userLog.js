@@ -1,5 +1,4 @@
-import {subscribe} from '../../../template';
-import {HEADS} from '../userLogsData/userLogs';
+import {HEADS, _configTemplate} from '../userLogsData/userLogs';
 import {sharedMethods} from '../../../../../lib/logs';
 
 Template.userLogData.helpers({
@@ -12,4 +11,4 @@ Template.userLogData.helpers({
   xForwardedFor: () => sharedMethods.userLog().httpHeaders['x-forwarded-for']
 });
 
-Template.userLogData.onCreated(() => subscribe(['users', 'userLogs', 'errorLogs']));
+Template.userLogData.onRendered(_configTemplate);

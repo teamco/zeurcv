@@ -1,3 +1,5 @@
 import {subscribe} from '../template';
 
-Template.adminDashboard.onCreated(() => subscribe(['users', 'userStatus', 'roles', 'userLogs', 'errorLogs']));
+Template.adminDashboard.onRendered(function() {
+  subscribe(this, ['users', 'userStatus', 'roles', 'userLogs', 'errorLogs']);
+});

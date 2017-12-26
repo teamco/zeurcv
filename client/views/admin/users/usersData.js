@@ -3,14 +3,26 @@ import {logsUser, throwError} from '../../../../lib/logs';
 import {subscribe} from '../../template';
 import {userPages} from '../../../../model/users.model';
 import {runTemplateHelper} from '../../../../lib/utils';
-
-subscribe(['users', 'userStatus', 'roles', 'userLogs', 'errorLogs']);
+import {paginateErrors} from '../errorLogs/errorLogsData/errorLogs';
 
 /**
  * @constant HEADS
  * @type {string[]}
  */
 export const HEADS = ['Name', 'Email', 'Provider', 'Last login', 'Actions'];
+
+/**
+ * @method _templateConfig
+ * @private
+ */
+function _templateConfig() {
+  subscribe(this, ['users', 'userStatus', 'roles'], () => {
+    const user = logsUser();
+    if (user && user._id && !isAdmin()) {
+      userPages.set({filters: {userId: user._id}});
+    }
+  });
+}
 
 Template.usersData.events({
   'click a.delete-user': function(event, template) {
@@ -40,12 +52,8 @@ Template.usersData.events({
   }
 });
 
-Template.usersData.onCreated(() => {
-  const user = logsUser();
-  if (user && user._id && !isAdmin()) {
-    userPages.set({filters: {userId: user._id}});
-  }
-});
+Template.usersData.onRendered(_templateConfig);
+Template.usersDataItem.onRendered(_templateConfig);
 
 Template.usersData.helpers({
   getHeads: HEADS,

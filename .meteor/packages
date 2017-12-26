@@ -45,7 +45,6 @@ alanning:roles
 tap:i18n
 jonperl:accounts-linkedin
 khamoud:linkedin-api
-alethes:pages
 themeteorchef:bert
 momentjs:moment
 jparker:gravatar
@@ -55,3 +54,5 @@ underscorestring:underscore.string
 tsega:bootstrap3-datetimepicker
 theduke:bootstrap-modal-prompt
 chipcastle:countries
+timmyg:wow
+alethes:pages

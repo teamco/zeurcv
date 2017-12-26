@@ -1,34 +1,13 @@
-import {userLog} from '../../../../../model/userLog.model';
 import {errorLog} from '../../../../../model/errorLog.model';
-import {errorLogPages} from '../../../../../model/errorLog.model';
 import {logsUser} from '../../../../../lib/logs';
-import {is403} from '../../../../../lib/logs';
-import {HEADS} from '../errorLogsData/errorLogs'
+import {is403, throwError} from '../../../../../lib/logs';
+import {HEADS, paginateErrors, filterByUser, style} from '../errorLogsData/errorLogs';
+import {subscribe} from '../../../template';
 
 /**
- * @method _style
- * @param fixed
- * @returns {string}
- * @private
+ * @instance errorData
  */
-function _style(fixed) {
-  return fixed ? 'success' : 'danger';
-}
-
-/**
- * @method _filterByUser
- * @param user
- * @returns {Array}
- * @private
- */
-function _filterByUser(user) {
-  return _.map(
-      userLog.find({userId: user._id}).fetch(),
-      function(log) {
-        return log._id;
-      }
-  );
-}
+let errorData;
 
 /**
  * @method _getErrorData
@@ -37,29 +16,31 @@ function _filterByUser(user) {
  * @private
  */
 function _getErrorData(errorId) {
+
   const user = logsUser();
   let failed = '/dashboard/errors';
-  let error;
 
   errorId = errorId || FlowRouter.current().params.errorId;
 
+  if (errorData && errorData._id === errorId) {
+    return errorData;
+  }
+
   if (user && user._id) {
-    error = errorLog.findOne({
+    errorData = errorLog.findOne({
       _id: errorId,
-      userLogId: {
-        $in: _filterByUser(user)
-      }
+      userLogId: {$in: filterByUser(user)}
     });
 
-    if (!error) {
+    if (!errorData) {
       failed = '/dashboard/users/' + user._id + '/errors';
     }
   } else {
-    error = errorLog.findOne(errorId);
+    errorData = errorLog.findOne(errorId);
   }
 
-  if (error) {
-    return error;
+  if (errorData) {
+    return errorData;
   }
 
   return is403(errorId, failed);
@@ -70,10 +51,10 @@ Template.errorLogData.events({
 
     event.preventDefault();
 
-    // var errorId = Router.current().params.errorId,
-    //     errorLog = ErrorLog.findOne(errorId);
+    const errorId = FlowRouter.current().params.errorId,
+        log = errorLog.findOne(errorId);
 
-    if (errorLog.fixed) {
+    if (log.fixed) {
       Bert.alert(TAPi18n.__('error_already_fixed'), 'warning');
       return false;
     }
@@ -93,21 +74,12 @@ Template.errorLogData.events({
   }
 });
 
-Template.errorLogsData.onCreated(function() {
-  const user = logsUser();
-  if (user && user._id) {
-    errorLogPages.set({
-      filters: {
-        userLogId: {
-          $in: _filterByUser(user)
-        }
-      }
-    });
-  }
+Template.errorLogData.onRendered(function() {
+  subscribe(this, ['users', 'userLogs', 'errorLogs'], paginateErrors);
 });
 
 Template.errorLogData.helpers({
   getHeads: HEADS,
-  style: _style,
+  style: style,
   errorLog: _getErrorData
 });

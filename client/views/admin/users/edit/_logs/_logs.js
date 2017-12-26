@@ -1,4 +1,9 @@
 import {runTemplateHelper} from '../../../../../../lib/utils';
+import {subscribe} from '../../../../template';
+
+Template.editUserLogs.onRendered(function() {
+  subscribe(this, ['userLogs', 'errorLogs']);
+});
 
 Template.editUserLogs.helpers({
 

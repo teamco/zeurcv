@@ -15,33 +15,34 @@ export const HEADS = ['Error', 'Type', 'Reason', 'Updated at', 'Show'];
  * @method _style
  * @param fixed
  * @returns {string}
- * @private
  */
-function _style(fixed) {
-  return fixed ? 'success' : 'danger';
-}
+export const style = (fixed) => fixed ? 'success' : 'danger';
 
 /**
  * @method _filterByUser
  * @param user
  * @returns {Array}
- * @private
  */
-function _filterByUser(user) {
-  return _.map(userLog.find({userId: user._id}).fetch(), log => log._id);
-}
+export const filterByUser = (user) => _.map(userLog.find({userId: user._id}).fetch(), log => log._id);
 
-Template.errorLogsData.onCreated(function() {
+/**
+ * @method paginateErrors
+ */
+export const paginateErrors = () => {
   const user = logsUser();
   if (user && user._id) {
     errorLogPages.set({
       filters: {
         userLogId: {
-          $in: _filterByUser(user)
+          $in: filterByUser(user)
         }
       }
     });
   }
+};
+
+Template.errorLogsData.onRendered(function() {
+  subscribe(this, ['users', 'userLogs', 'errorLogs'], paginateErrors);
 });
 
 Template.errorLogsData.helpers({
@@ -55,7 +56,7 @@ Template.errorLogsData.helpers({
     const user = logsUser();
     if (user && user._id) {
       return errorLog.find({
-        userLogId: {$in: _filterByUser(user)}
+        userLogId: {$in: filterByUser(user)}
       }).count();
     }
 
@@ -64,5 +65,5 @@ Template.errorLogsData.helpers({
 });
 
 Template.errorLogsDataItem.helpers({
-  style: _style
+  style: style
 });

@@ -17,6 +17,7 @@ export const allowModel = collection => {
     update: isOwnerDocument,
     remove: isOwnerDocument
   });
+  return collection;
 };
 
 /**
@@ -30,4 +31,5 @@ export const denyModel = collection => {
       return _.contains(fields, 'userId');
     }
   });
+  return collection;
 };
