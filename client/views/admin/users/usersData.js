@@ -57,8 +57,7 @@ Template.usersDataItem.onRendered(_templateConfig);
 
 Template.usersData.helpers({
   getHeads: HEADS,
-  usersCount: () => isAdmin() ? usersCollection().count() : 1,
-  allUsers: () => isAdmin() ? usersCollection().fetch() : [currentUser()]
+  usersCount: () => isAdmin() ? usersCollection().count() : 1
 });
 
 Template.usersDataItem.helpers({

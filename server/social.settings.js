@@ -8,6 +8,10 @@ const SETTING = {
   google: {
     client_id: 'clientId',
     client_secret: 'secret'
+  },
+  facebook: {
+    app_id: 'appId',
+    client_secret: 'secret'
   }
 };
 
