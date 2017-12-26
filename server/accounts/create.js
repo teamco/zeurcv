@@ -12,7 +12,7 @@ const providersInfo = {
   linkedin: linkedinProfile
 };
 
-const admins = ['teamco@gmail.com'];
+const admins = ['teamco@gmail.com', 'moha.wattad@gmail.com', 'moha.wattad@mail.huji.ac.il'];
 const managers = [];
 
 /**

@@ -45,6 +45,11 @@ export const linkedinProfile = (user, info) => {
     }
   });
 
+    var linkedin = Linkedin().init(accessToken);
+
+    linkedin.people.me(function(err, $in) {
+       debugger // Loads the profile of access token owner.
+    });
   if (response.error) throwError(response.error);
 
   return {

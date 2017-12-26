@@ -7,6 +7,12 @@ FlowRouter.route('/', {
   }
 });
 
+FlowRouter.route('/cv', {
+  action: function() {
+    BlazeLayout.render('adminLayout', {content: 'cv'});
+  }
+});
+
 FlowRouter.route('/pageOne', {
   action: function() {
     BlazeLayout.render('adminLayout', {content: 'pageOne'});
