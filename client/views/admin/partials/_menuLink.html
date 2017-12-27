@@ -1,8 +1,21 @@
 <template name="menuLink">
-    <li class="{{isActivePath path=path}}">
+    <li class="{{isActivePath regex=path}}">
         <a href="{{path}}">
             <i class="fa fa-{{icon}}"></i>
             <span class="nav-label">{{label}}</span>
+            {{#if items}}<span class="fa arrow"></span>{{/if}}
         </a>
+        {{#if items}}
+            <ul class="nav nav-second-level collapse {{#if isActivePath regex=path}}in{{/if}}">
+                {{#each items}}
+                    <li class="{{isActivePath regex=path}}">
+                        <a href="{{path}}">
+                            <i class="fa fa-{{icon}}"></i>
+                            <span class="nav-label">{{label}}</span>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
     </li>
 </template>
