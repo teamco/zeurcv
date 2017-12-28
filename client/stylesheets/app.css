@@ -10,3 +10,7 @@
 .no-break {
     white-space: nowrap;
 }
+
+.user-picture {
+    box-shadow: 0 0 5px #fff;
+}

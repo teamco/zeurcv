@@ -1,0 +1,20 @@
+<template name="navUserProfile">
+    <div class="dropdown profile-element">
+            <span>
+                <img alt="image" class="user-picture img-circle" src="{{user.profile.picture}}"/>
+            </span>
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <span class="clear">
+                <span class="block m-t-xs">
+                    <strong class="font-bold">{{user.profile.name}} <b class="caret"></b></strong>
+                </span>
+                <span class="text-muted text-xs block">{{user.profile.headline}}</span>
+            </span>
+        </a>
+        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li><a href="/dashboard/users/{{user._id}}">Profile</a></li>
+            <li class="divider"></li>
+            <li><a id="sign-out-profile" href="#">Logout</a></li>
+        </ul>
+    </div>
+</template>
