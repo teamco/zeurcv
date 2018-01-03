@@ -1,5 +1,12 @@
+/**
+ * @method checkLoggedIn
+ * @param ctx
+ * @param redirect
+ */
+import {isLoggedIn} from '../../../lib/users';
+
 function checkLoggedIn(ctx, redirect) {
-  if (!Meteor.userId()) {
+  if (!isLoggedIn()) {
     redirect('/');
   }
 }

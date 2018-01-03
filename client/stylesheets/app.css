@@ -13,4 +13,6 @@
 
 .user-picture {
     box-shadow: 0 0 5px #fff;
+    width: 64px;
+    height: 64px;
 }

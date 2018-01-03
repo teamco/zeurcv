@@ -1,0 +1,11 @@
+<template name="accountProfilesData">
+    {{> paginationTable heads=getHeads style='account-profile' pages=pages pagesNav=pagesNav}}
+</template>
+
+<template name="accountProfilesDataItem">
+    <tr>
+        <td>profile</td>
+        <td>{{formatDate updatedAt 'long'}}</td>
+        <td>{{> moreInfoLink linkTo='profiles' id=_id style=style}}</td>
+    </tr>
+</template>

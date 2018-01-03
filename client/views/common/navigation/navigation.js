@@ -1,4 +1,4 @@
-import {getUser} from '../../../../lib/users';
+import {getUser, isLoggedIn} from '../../../../lib/users';
 
 Template.navigation.onRendered = function() {
   // Initialize metisMenu
@@ -11,6 +11,50 @@ Template.navHeader.helpers({
    * @method getUser
    */
   user: getUser
+});
+
+Template.navUserProfile.helpers({
+
+  /**
+   * Get user image
+   * @method userImage
+   * @param user
+   * @return {*}
+   */
+  userImage: user => {
+    const maxIndex = 2;
+
+    /**
+     * Get random index of guest profile image
+     * @method index
+     */
+    const index = Math.floor(Math.random() * maxIndex);
+
+    if (user.profile.picture) {
+      return user.profile.picture;
+    }
+
+    return 'users/user' + index + '.png';
+  },
+
+  /**
+   * Get full user name
+   * @method userName
+   * @param user
+   * @return {string}
+   */
+  userName: user => {
+    if (user.profile.name) {
+      return user.profile.name;
+    }
+
+    return 'Welcome Guest';
+  },
+
+  /**
+   * @method isLoggedIn
+   */
+  isLoggedIn: isLoggedIn
 });
 
 Template.navUserProfile.events({

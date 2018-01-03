@@ -1,20 +1,24 @@
 <template name="navUserProfile">
     <div class="dropdown profile-element">
             <span>
-                <img alt="image" class="user-picture img-circle" src="{{user.profile.picture}}"/>
+                <img alt="image" class="user-picture img-circle" src="{{userImage user}}"/>
             </span>
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <span class="clear">
                 <span class="block m-t-xs">
-                    <strong class="font-bold">{{user.profile.name}} <b class="caret"></b></strong>
+                    <strong class="font-bold">{{userName user}}{{#if isLoggedIn}} <b class="caret"></b>{{/if}}</strong>
                 </span>
-                <span class="text-muted text-xs block">{{user.profile.headline}}</span>
+                {{#if isLoggedIn}}
+                    <span class="text-muted text-xs block">{{user.profile.headline}}</span>
+                {{/if}}
             </span>
         </a>
-        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-            <li><a href="/dashboard/users/{{user._id}}">Profile</a></li>
-            <li class="divider"></li>
-            <li><a id="sign-out-profile" href="#">Logout</a></li>
-        </ul>
+        {{#if isLoggedIn}}
+            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                <li><a href="/dashboard/users/{{user._id}}">Profile</a></li>
+                <li class="divider"></li>
+                <li><a id="sign-out-profile" href="#">Logout</a></li>
+            </ul>
+        {{/if}}
     </div>
 </template>

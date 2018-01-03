@@ -44,7 +44,6 @@ service-configuration
 alanning:roles
 tap:i18n
 jonperl:accounts-linkedin
-khamoud:linkedin-api
 themeteorchef:bert
 momentjs:moment
 jparker:gravatar
@@ -57,3 +56,4 @@ chipcastle:countries
 timmyg:wow
 alethes:pages
 accounts-facebook
+khamoud:linkedin-api

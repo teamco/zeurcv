@@ -13,7 +13,9 @@ export const googleProfile = (user, info) => {
     params: {access_token: accessToken}
   });
 
-  if (result.error) throwError(result.error);
+  if (result.error) {
+    return throwError(result.error);
+  }
 
   return {
     name: info.name,

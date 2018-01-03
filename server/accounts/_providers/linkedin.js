@@ -45,12 +45,9 @@ export const linkedinProfile = (user, info) => {
     }
   });
 
-    var linkedin = Linkedin().init(accessToken);
-
-    linkedin.people.me(function(err, $in) {
-       debugger // Loads the profile of access token owner.
-    });
-  if (response.error) throwError(response.error);
+  if (response.error) {
+    return throwError(response.error);
+  }
 
   return {
     name: response.data.formattedName,
@@ -58,7 +55,6 @@ export const linkedinProfile = (user, info) => {
     link: response.data.siteStandardProfileRequest.url,
     locale: response.data.location.name,
     picture: response.data.pictureUrl,
-    headline: response.data.headline,
     industry: response.data.industry,
     numConnections: response.data.numConnections,
     currentPosition: response.data.positions
