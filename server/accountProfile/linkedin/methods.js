@@ -31,6 +31,12 @@ Meteor.methods({
       if (isAvailableProfile) {
         if (isAvailableProfile.createdAt < $in.updatedAt) {
           accountProfile.insert($in);
+        } else {
+          accountProfile.update(
+              {_id: $in.id},
+              {$set: {'updated_at': new Date()}},
+              {multi: true}
+          );
         }
       } else {
         accountProfile.insert($in);
