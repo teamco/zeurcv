@@ -1,0 +1,17 @@
+<template name="settingItem">
+    <div class="setings-item">
+        <span>{{label}}</span>
+        <div class="switch">
+            <div class="onoffswitch">
+                <input {{checked}} type="checkbox"
+                                   name="collapsemenu"
+                                   class="onoffswitch-checkbox"
+                                   id="{{switch_id}}">
+                <label class="onoffswitch-label" for="{{switch_id}}">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,21 @@
+<template name="rightBarSetting">
+    <div id="right-bar-setting" class="tab-pane">
+        <div class="sidebar-title">
+            <h3><i class="fa fa-gears"></i> Settings</h3>
+            <small><i class="fa fa-tim"></i> You have 14 projects. 10 not completed.</small>
+        </div>
+
+        {{> settingItem label='Show notifications' switch_id='show-notification' checked='checked'}}
+        {{> settingItem label='Enable history' switch_id='enable-history'}}
+
+        <div class="sidebar-content">
+            <h4>Settings</h4>
+            <div class="small">
+                I belive that. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                And typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                the 1500s.
+                Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            </div>
+        </div>
+    </div>
+</template>
