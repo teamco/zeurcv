@@ -2,8 +2,6 @@ import {isCurrentUser, isAdmin, currentUser, usersCollection} from '../../../../
 import {logsUser, throwError} from '../../../../lib/logs';
 import {subscribe} from '../../template';
 import {userPages} from '../../../../model/users.model';
-import {runTemplateHelper} from '../../../../lib/utils';
-import {paginateErrors} from '../errorLogs/errorLogsData/errorLogs';
 
 /**
  * @constant HEADS

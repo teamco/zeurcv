@@ -9,10 +9,11 @@ Template.rightSidebar.onRendered = () => {
 
   // Move right sidebar top after scroll
   $(window).scroll(() => {
+    const rightBar = $('#right-sidebar');
     if ($(window).scrollTop() > 0 && !$('body').hasClass('fixed-nav')) {
-      $('#right-sidebar').addClass('sidebar-top');
+      rightBar.addClass('sidebar-top');
     } else {
-      $('#right-sidebar').removeClass('sidebar-top');
+      rightBar.removeClass('sidebar-top');
     }
   });
 };

@@ -34,7 +34,7 @@ Template.navUserProfile.helpers({
       return user.profile.picture;
     }
 
-    return 'users/user' + index + '.png';
+    return '/assets/users/user' + index + '.png';
   },
 
   /**

@@ -3,15 +3,13 @@
         <div class="panel-body">
             <table class="table {{style}}">
                 <thead>
-                <tr>
-                    {{#each heads}}
-                        <th>{{this}}</th>
-                    {{/each}}
-                </tr>
+                    <tr>
+                        {{#each heads}}
+                            <th>{{this}}</th>
+                        {{/each}}
+                    </tr>
                 </thead>
-                <tbody>
-                {{> pages}}
-                </tbody>
+                <tbody>{{> pages}}</tbody>
             </table>
         </div>
         <div class="panel-footer">{{> pagesNav}}</div>

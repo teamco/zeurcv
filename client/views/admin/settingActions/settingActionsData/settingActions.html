@@ -1,0 +1,14 @@
+<template name="settingActionsData">
+    {{pagesData}}
+    {{> paginationTable heads=getHeads style='setting-actions' pages=pages pagesNav=pagesNav}}
+</template>
+
+<template name="settingActionsDataItem">
+    <tr>
+        <td><label for="{{_id}}"><input id="{{_id}}" type="checkbox"  />{{label}}</label></td>
+        <td>
+            <a href="/dashboard/setting-actions/{{_id}}" class="label label-info show-setting-action">Show</a>
+            <a href="/dashboard/setting-actions/{{_id}}" class="label label-danger delete-setting-action">Delete</a>
+        </td>
+    </tr>
+</template>

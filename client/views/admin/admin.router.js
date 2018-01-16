@@ -47,6 +47,11 @@ const routes = {
     one: () => ({action: _adminRenderer('trackingLogData'), name: 'trackingLogs'}),
     url: '/dashboard/tracking'
   },
+  settingActions: {
+    all: () => ({action: _adminRenderer('settingActionsData'), name: 'settingActions'}),
+    one: () => ({action: _adminRenderer('settingActionData'), name: 'settingActions'}),
+    url: '/dashboard/setting-actions'
+  },
   users: {
     all: () => ({action: _adminRenderer('usersData'), name: 'users'}),
     one: () => ({action: _adminRenderer('editUser'), name: 'users'}),
@@ -78,3 +83,9 @@ privateRoutes.route(routes.tracking.url, routes.tracking.all());
 privateRoutes.route(routes.tracking.url + '/:trackingId', routes.tracking.one());
 privateRoutes.route(routes.users.url + '/:userId/tracking', routes.tracking.all());
 privateRoutes.route(routes.users.url + '/:userId/tracking/:trackingId', routes.tracking.one());
+
+// Setting actions
+privateRoutes.route(routes.settingActions.url, routes.settingActions.all());
+privateRoutes.route(routes.settingActions.url + '/:settingActionId', routes.settingActions.one());
+privateRoutes.route(routes.users.url + '/:userId/setting-actions', routes.settingActions.all());
+privateRoutes.route(routes.users.url + '/:userId/setting-actions/:settingActionId', routes.settingActions.one());
