@@ -58,8 +58,7 @@ Meteor.methods({
         // TODO (teamco): Check for changes
         Meteor.call('createUserProfileData', $in, profile.version + 1);
       } else {
-        accountProfile.update({_id: $in.id}, {$set: {'updated_at': new Date()}}
-        );
+        accountProfile.update({_id: $in.id}, {$set: {'updated_at': new Date()}});
       }
     } else {
       Meteor.call('createUserProfileData', $in, 1);
