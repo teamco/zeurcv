@@ -4,8 +4,21 @@
 
 <template name="accountProfilesDataItem">
     <tr>
-        <td>profile</td>
-        <td>{{formatDate updatedAt 'long'}}</td>
-        <td>{{> moreInfoLink linkTo='profiles' id=_id style=style}}</td>
+        <td class="user-info">
+            <img src="{{pictureUrl}}" title="{{formattedName}}" alt="{{formattedName}}"/>
+            {{> userLink userId=user_id}}
+        </td>
+        <td>
+            <a href="{{publicProfileUrl}}">
+                <span class="label">{{formattedName}}</span>
+            </a>
+        </td>
+        <td>{{version}}</td>
+        <td>{{headline}}</td>
+        <td>{{formatDate updated_at 'long'}}</td>
+        <td>
+            {{> generateTo type='pdf' label='PDF' id=_id style='success'}}
+            {{> generateTo type='word' label='DOC' id=_id style='success'}}
+        </td>
     </tr>
 </template>

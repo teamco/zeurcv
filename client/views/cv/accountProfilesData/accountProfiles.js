@@ -6,7 +6,7 @@ import {accountProfile, accountProfilePages} from '../../../../model/accountProf
  * @constant HEADS
  * @type {[string,string,string,string,string]}
  */
-export const HEADS = ['Profile', 'Updated at', 'Show'];
+export const HEADS = ['User', 'Profile', 'Version', 'Headline', 'Updated at', 'Export'];
 
 /**
  * @method _configTemplate

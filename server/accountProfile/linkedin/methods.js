@@ -1,4 +1,3 @@
-import {Meteor} from 'meteor/meteor';
 import {is403, throwError} from '../../../lib/logs';
 import {accountProfile} from '../../../model/accountProfile.model';
 
@@ -36,6 +35,7 @@ Meteor.methods({
     $in.updated_at = new Date();
     $in.created_at = new Date();
     $in.version = version;
+    $in.user_id = Meteor.userId();
     accountProfile.insert($in);
   },
 
@@ -44,7 +44,10 @@ Meteor.methods({
    * @param $in
    */
   updateUserProfileData: function($in) {
-    const profile = accountProfile.findOne({id: $in.id}, {sort: {DateTime: -1, limit: 1}});
+    const profile = accountProfile.findOne(
+        {id: $in.id, user_id: Meteor.userId()},
+        {sort: {DateTime: -1, limit: 1}}
+    );
 
     if (profile) {
 

@@ -1,0 +1,11 @@
+.table.account-profile tbody td {
+    padding-top: 15px;
+}
+
+.table.account-profile tbody td:first-child {
+    padding-top: 8px;
+}
+
+.table.account-profile tbody td .generator {
+    cursor: pointer;
+}
