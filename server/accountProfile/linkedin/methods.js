@@ -35,7 +35,7 @@ Meteor.methods({
     $in.updated_at = new Date();
     $in.created_at = new Date();
     $in.version = version;
-    $in.user_id = Meteor.userId();
+    $in.userId = Meteor.userId();
     accountProfile.insert($in);
   },
 

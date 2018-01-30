@@ -9,10 +9,9 @@ import {accountProfile, accountProfilePages} from '../../../../model/accountProf
 export const HEADS = ['User', 'Profile', 'Version', 'Headline', 'Updated at', 'Export to'];
 
 /**
- * @method _configTemplate
- * @private
+ * @method configTemplate
  */
-export const _configTemplate = function() {
+export const configProfileTemplate = function() {
   subscribe(this, ['users', 'profile'], () => {
     const user = currentUser();
     if (user && user._id) {
@@ -21,18 +20,8 @@ export const _configTemplate = function() {
   });
 };
 
-
-Template.accountProfilesData.onRendered(_configTemplate);
+Template.accountProfilesData.onRendered(configProfileTemplate);
 
 Template.accountProfilesData.helpers({
-  getHeads: HEADS,
-
-  /**
-   * @method profilesCount
-   * @returns {number}
-   */
-  profilesCount: () => {
-    const user = currentUser();
-    return user && user._id ? accountProfile.find({userId: user._id}).count() : 0;
-  }
+  getHeads: HEADS
 });
