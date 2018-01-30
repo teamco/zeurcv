@@ -1,12 +1,13 @@
 import {subscribe} from '../../template';
 import {currentUser} from '../../../../lib/users';
 import {accountProfile, accountProfilePages} from '../../../../model/accountProfile.model';
+import {throwError} from '../../../../lib/logs';
 
 /**
  * @constant HEADS
  * @type {[string,string,string,string,string]}
  */
-export const HEADS = ['User', 'Profile', 'Version', 'Headline', 'Updated at', 'Export to'];
+export const HEADS = ['User', 'Profile', 'Version', 'Headline', 'Updated at', 'Export', 'Update'];
 
 /**
  * @method configTemplate
@@ -24,4 +25,23 @@ Template.accountProfilesData.onRendered(configProfileTemplate);
 
 Template.accountProfilesData.helpers({
   getHeads: HEADS
+});
+
+Template.accountProfilesData.events({
+
+  /**
+   * @event click
+   * @param e
+   * @param data
+   */
+  'click #generator-refresh'(e, data) {
+
+    Meteor.call('fetchUserProfileData', (error, result) => {
+      if (throwError(error)) {
+        return false;
+      }
+      Bert.alert(TAPi18n.__('user_data_fetched'), 'info');
+      console.log(result);
+    });
+  }
 });
