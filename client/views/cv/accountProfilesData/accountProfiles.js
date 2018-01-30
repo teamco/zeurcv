@@ -1,13 +1,13 @@
 import {subscribe} from '../../template';
 import {currentUser} from '../../../../lib/users';
-import {accountProfile, accountProfilePages} from '../../../../model/accountProfile.model';
+import {accountProfilePages} from '../../../../model/accountProfile.model';
 import {throwError} from '../../../../lib/logs';
 
 /**
  * @constant HEADS
  * @type {[string,string,string,string,string]}
  */
-export const HEADS = ['User', 'Profile', 'Version', 'Headline', 'Updated at', 'Export', 'Update'];
+export const HEADS = ['User', 'Profile', 'Version', 'Headline', 'Updated at', 'Export', 'Action'];
 
 /**
  * @method configTemplate
