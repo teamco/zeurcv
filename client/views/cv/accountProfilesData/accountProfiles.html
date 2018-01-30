@@ -17,8 +17,9 @@
         <td>{{headline}}</td>
         <td>{{formatDate updated_at 'long'}}</td>
         <td>
-            {{> generateTo type='pdf' label='PDF' id=_id style='success'}}
-            {{> generateTo type='word' label='DOC' id=_id style='success'}}
+            {{> generateTo type='eye' label='Preview' id=_id style='warning'}}
+            {{> generateTo type='file-pdf-o' label='PDF' id=_id style='success'}}
+            {{> generateTo type='file-word-o' label='DOC' id=_id style='success'}}
         </td>
     </tr>
 </template>
