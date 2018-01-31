@@ -12,3 +12,9 @@
 .table.account-profile .user-info .profile li {
     white-space: nowrap;
 }
+
+.table.account-profile .user-info .profile li span {
+    display: inline-block;
+    min-width: 70px;
+    margin-right: 5px;
+}
