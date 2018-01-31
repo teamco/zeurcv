@@ -21,6 +21,24 @@ export const configProfileTemplate = function() {
   });
 };
 
+/**
+ * @method updateProfile
+ * @param {Event} e
+ * @constant
+ */
+export const updateProfile = (e) => {
+  e.stopPropagation();
+  e.preventDefault();
+
+  Meteor.call('fetchUserProfileData', (error, result) => {
+    if (throwError(error)) {
+      return false;
+    }
+    Bert.alert(TAPi18n.__('user_data_fetched'), 'info');
+    console.log(result);
+  });
+};
+
 Template.accountProfilesData.onRendered(configProfileTemplate);
 
 Template.accountProfilesData.helpers({
@@ -32,18 +50,8 @@ Template.accountProfilesData.events({
   /**
    * @event click
    * @param e
-   * @param data
    */
-  'click #generator-refresh'(e, data) {
-
-    e.preventDefault();
-
-    Meteor.call('fetchUserProfileData', (error, result) => {
-      if (throwError(error)) {
-        return false;
-      }
-      Bert.alert(TAPi18n.__('user_data_fetched'), 'info');
-      console.log(result);
-    });
+  'click #generator-refresh'(e) {
+    updateProfile(e);
   }
 });
