@@ -1,3 +1,6 @@
 <template name="cv">
+    {{#if showNewButton profilesCount}}
+        {{> generateTo type='plus' label='New' style='danger'}}
+    {{/if}}
     {{> accountProfilesData}}
 </template>

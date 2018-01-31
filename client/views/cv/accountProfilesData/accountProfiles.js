@@ -36,6 +36,8 @@ Template.accountProfilesData.events({
    */
   'click #generator-refresh'(e, data) {
 
+    e.preventDefault();
+
     Meteor.call('fetchUserProfileData', (error, result) => {
       if (throwError(error)) {
         return false;
