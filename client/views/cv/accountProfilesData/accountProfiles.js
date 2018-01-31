@@ -2,6 +2,7 @@ import {subscribe} from '../../template';
 import {currentUser} from '../../../../lib/users';
 import {accountProfilePages} from '../../../../model/accountProfile.model';
 import {throwError} from '../../../../lib/logs';
+import {runTemplateHelper} from '../../../../lib/utils';
 
 /**
  * @constant HEADS

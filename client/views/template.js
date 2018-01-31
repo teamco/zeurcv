@@ -89,6 +89,18 @@ Template.registerHelper('formatDate', (date, format) => {
   return moment(date).format(format);
 });
 
+/**
+ * @method generatorUrl
+ * @param id
+ * @return {string}
+ */
+Template.registerHelper('generatorUrl', id => {
+  const url = '/cv/generate';
+  return id ? url + '/' + id : url;
+});
+
+Template.registerHelper('friendlyUrl', text => text.toLowerCase().replace(/ /g, '-'));
+
 Template.registerHelper('fetchCountedTitle', function() {
   FlowRouter.watchPathChange();
   let title = pageTitle();

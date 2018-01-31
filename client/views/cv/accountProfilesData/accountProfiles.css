@@ -8,4 +8,5 @@
 
 .table.account-profile tbody td .generator {
     cursor: pointer;
+    white-space: nowrap;
 }
