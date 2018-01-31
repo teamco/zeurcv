@@ -1,12 +1,14 @@
-.table.account-profile tbody td {
-    padding-top: 15px;
-}
-
-.table.account-profile tbody td:first-child {
-    padding-top: 8px;
-}
-
 .table.account-profile tbody td .generator {
     cursor: pointer;
+    white-space: nowrap;
+}
+
+.table.account-profile .user-info .profile {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.table.account-profile .user-info .profile li {
     white-space: nowrap;
 }

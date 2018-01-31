@@ -2,13 +2,12 @@ import {subscribe} from '../../template';
 import {currentUser} from '../../../../lib/users';
 import {accountProfilePages} from '../../../../model/accountProfile.model';
 import {throwError} from '../../../../lib/logs';
-import {runTemplateHelper} from '../../../../lib/utils';
 
 /**
  * @constant HEADS
  * @type {[string,string,string,string,string]}
  */
-export const HEADS = ['User', 'Profile', 'Version', 'Headline', 'Updated at', 'Export', 'Action'];
+export const HEADS = ['User', 'Version', 'Headline', 'Updated at', 'Export', 'Action'];
 
 /**
  * @method configTemplate

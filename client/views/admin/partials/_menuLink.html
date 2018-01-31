@@ -1,7 +1,7 @@
 <template name="menuLink">
     <li class="{{isActivePath regex=path}}">
         <a href="{{path}}">
-            <i class="fa fa-{{icon}}"></i>
+            {{> fa type=icon}}
             <span class="nav-label">{{label}}</span>
             {{#if items}}<span class="fa arrow"></span>{{/if}}
         </a>
@@ -10,7 +10,7 @@
                 {{#each items}}
                     <li class="{{isActivePath regex=path}}">
                         <a href="{{path}}">
-                            <i class="fa fa-{{icon}}"></i>
+                            {{> fa type=icon}}
                             <span class="nav-label">{{label}}</span>
                         </a>
                     </li>

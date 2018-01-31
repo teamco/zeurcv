@@ -12,10 +12,10 @@
                         <p>{{Name}}</p>
                     </div>
                     <div class="icon">
-                        <i class="glyphicon glyphicon-signal"></i>
+                        {{> fa type='signal'}}
                     </div>
                     <a class="small-box-footer">
-                        <i class="glyphicon glyphicon-chevron-{{stockChange Change}}"></i>
+                        {{> fa type='chevron-{{stockChange Change}}'}}
                         {{Change}}
                     </a>
                 </div>

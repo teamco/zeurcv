@@ -5,13 +5,24 @@
 <template name="accountProfilesDataItem">
     <tr>
         <td class="user-info">
-            <img src="{{pictureUrl}}" title="{{formattedName}}" alt="{{formattedName}}"/>
-            {{> userLink userId=userId}}
-        </td>
-        <td>
-            <a href="{{publicProfileUrl}}">
-                <span class="label">{{formattedName}}</span>
-            </a>
+            <ul class="profile">
+                <li>
+                    <span>
+                        {{> fa type='user-secret'}}
+                        User info
+                    </span>
+                    {{> userLink userId=userId}}
+                </li>
+                <li>
+                    <span>
+                        {{> fa type='linkedin-square'}}
+                        LinkedIn
+                    </span>
+                    <a href="{{publicProfileUrl}}">
+                        <span class="label">{{formattedName}}</span>
+                    </a>
+                </li>
+            </ul>
         </td>
         <td>{{version}}</td>
         <td>{{headline}}</td>
