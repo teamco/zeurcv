@@ -45,8 +45,8 @@ Meteor.methods({
    */
   updateUserProfileData: function($in) {
     const profile = accountProfile.findOne(
-        {id: $in.id, user_id: Meteor.userId()},
-        {sort: {DateTime: -1, limit: 1}}
+        {id: $in.id, userId: Meteor.userId()},
+        {sort: {updated_at: -1, limit: 1}}
     );
 
     if (profile) {
@@ -57,7 +57,7 @@ Meteor.methods({
       const lastUpdate = new Date(profile.updated_at);
       lastUpdate.setDate(lastUpdate.getDate() + refreshPeriod);
 
-      if (lastUpdate.getTime() > currentDate) {
+      if (lastUpdate.getTime() < currentDate) {
         // TODO (teamco): Check for changes
         Meteor.call('createUserProfileData', $in, profile.version + 1);
       } else {
