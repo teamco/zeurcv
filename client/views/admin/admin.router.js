@@ -52,6 +52,10 @@ const routes = {
     one: () => ({action: _adminRenderer('settingActionData'), name: 'settingActions'}),
     url: '/dashboard/setting-actions'
   },
+  templates: {
+    all: () => ({action: _adminRenderer('templates'), name: 'templates'}),
+    url: '/dashboard/templates'
+  },
   users: {
     all: () => ({action: _adminRenderer('usersData'), name: 'users'}),
     one: () => ({action: _adminRenderer('editUser'), name: 'users'}),
@@ -89,3 +93,6 @@ privateRoutes.route(routes.settingActions.url, routes.settingActions.all());
 privateRoutes.route(routes.settingActions.url + '/:settingActionId', routes.settingActions.one());
 privateRoutes.route(routes.users.url + '/:userId/setting-actions', routes.settingActions.all());
 privateRoutes.route(routes.users.url + '/:userId/setting-actions/:settingActionId', routes.settingActions.one());
+
+// Templates
+privateRoutes.route(routes.templates.url, routes.templates.all());

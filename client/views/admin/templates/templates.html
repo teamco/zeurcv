@@ -1,0 +1,6 @@
+<template name="templates">
+    {{> addTemplate }}
+    {{#each templates}}
+        {{> templateItem data=data counter=counter updatedAt=updatedAt }}
+    {{/each}}
+</template>

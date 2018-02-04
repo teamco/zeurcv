@@ -13,7 +13,7 @@ export const HEADS = ['User', 'Version', 'Headline', 'Updated at', 'Export', 'Ac
  * @method configTemplate
  */
 export const configProfileTemplate = function() {
-  subscribe(this, ['users', 'profile'], () => {
+  subscribe(this, ['users', 'profile', 'templates'], () => {
     const user = currentUser();
     if (user && user._id) {
       accountProfilePages.set({filters: {userId: user._id}});

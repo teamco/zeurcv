@@ -1,0 +1,12 @@
+.add-template,
+.add-template > * {
+    cursor: pointer;
+}
+
+.add-template input {
+    display: none;
+}
+
+img.cv-template {
+    max-width: 100px;
+}

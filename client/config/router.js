@@ -6,13 +6,6 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/cv', {
-  action: () => {
-    BlazeLayout.render('adminLayout', {content: 'cv'});
-  },
-  name: 'profile'
-});
-
 FlowRouter.route('/pageOne', {
   action: () => {
     BlazeLayout.render('adminLayout', {content: 'pageOne'});

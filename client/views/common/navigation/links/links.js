@@ -16,6 +16,7 @@ Template.navLinks.helpers({
     {path: '/dashboard/logs', icon: 'list', label: 'User logs'},
     {path: '/dashboard/errors', icon: 'exclamation-circle', label: 'Error logs'},
     {path: '/dashboard/tracking', icon: 'history', label: 'Tracking logs'},
-    {path: '/dashboard/setting-actions', icon: 'cog', label: 'Setting actions'}
+    {path: '/dashboard/setting-actions', icon: 'cog', label: 'Setting actions'},
+    {path: '/dashboard/templates', icon: 'paper-plane', label: 'Templates'}
   ]
 });

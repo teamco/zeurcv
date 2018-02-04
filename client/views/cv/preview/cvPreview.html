@@ -1,0 +1,25 @@
+<template name="cvPreview">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab:100,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
+    <div class="cv-container">
+        <table>
+            <tbody>
+            <tr>
+                <td class="m-layout-left-container">
+                    <div class="m-layout-left">
+                        <div class="m-layout-bg">
+                            {{> cvContactInfo email=profile.emailAddress address=profile.location.name }}
+                            {{> cvSkills profile }}
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 70%;padding-left: 13px;vertical-align: top;">
+                    {{> cvHeadline name=profile.formattedName summary=profile.summary }}
+                    {{> cvExperience profile }}
+                    {{> cvEducation profile }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
