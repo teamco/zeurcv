@@ -1,4 +1,4 @@
-import {runTemplateHelper, pageTitle, templateName} from '../../lib/utils';
+import {runTemplateHelper, pageTitle, templateName, currentRoute} from '../../lib/utils';
 import {throwError} from '../../lib/logs';
 import {currentUser} from '../../lib/users';
 
@@ -41,7 +41,7 @@ Template.body.events({
    * @param data
    */
   'click'(e, data) {
-    const path = FlowRouter.current().path;
+    const path = currentRoute().path;
     // Prevent tot track tracking
     if ((path || '').match(/tracking/)) return false;
     Meteor.call('createTrackingLog', {
@@ -119,7 +119,7 @@ Template.registerHelper('fetchTitle', () => {
 });
 
 Template.registerHelper('redirectToBack', () => {
-  const current = FlowRouter.current();
+  const current = currentRoute();
   const oldRoute = current.oldRoute;
   const path = current.path;
   if (oldRoute) {
@@ -133,7 +133,7 @@ Template.registerHelper('redirectToBack', () => {
 });
 
 Template.registerHelper('ellipsis', str => s.prune(str, 100));
-Template.registerHelper('moreInfoUrl', () => FlowRouter.current().path);
+Template.registerHelper('moreInfoUrl', () => currentRoute().path);
 
 Template.registerHelper('isReady', () => Template.instance().pagination.ready());
 Template.registerHelper('templatePagination', () => Template.instance().pagination);

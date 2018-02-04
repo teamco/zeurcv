@@ -1,4 +1,6 @@
 import {templates} from '../../model/templates.model';
+import {is404} from '../../lib/logs';
+import {currentRoute} from '../../lib/utils';
 
 Meteor.methods({
 
@@ -14,5 +16,24 @@ Meteor.methods({
       createdAt: new Date(),
       updatedAt: new Date()
     });
+  },
+
+  /**
+   * @method updateTemplate
+   * @param {string} id
+   * @param {string} url
+   * @return {boolean}
+   */
+  updateTemplate: (id, url) => {
+    const template = templates.findOne({_id: id});
+    if (!template) {
+      is404(id, url);
+      return false;
+    }
+    template.update({
+      updatedAt: new Date(),
+      counter: template.counter + 1
+    });
+    FlowRouter.go(currentRoute().path + '/preview');
   }
 });

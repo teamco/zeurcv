@@ -3,6 +3,7 @@ import {logsUser} from '../../../../../lib/logs';
 import {is403, throwError} from '../../../../../lib/logs';
 import {HEADS, paginateErrors, filterByUser, style} from '../errorLogsData/errorLogs';
 import {subscribe} from '../../../template';
+import {getParamId} from '../../../../../lib/utils';
 
 /**
  * @instance errorData
@@ -20,7 +21,7 @@ function _getErrorData(errorId) {
   const user = logsUser();
   let failed = '/dashboard/errors';
 
-  errorId = errorId || FlowRouter.current().params.errorId;
+  errorId = errorId || getParamId('errorId');
 
   if (errorData && errorData._id === errorId) {
     return errorData;
@@ -51,7 +52,7 @@ Template.errorLogData.events({
 
     event.preventDefault();
 
-    const errorId = FlowRouter.current().params.errorId,
+    const errorId = getParamId('errorId'),
         log = errorLog.findOne(errorId);
 
     if (log.fixed) {

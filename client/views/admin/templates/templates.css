@@ -7,6 +7,10 @@
     display: none;
 }
 
-img.cv-template {
+.cv-template {
+    cursor: pointer;
+}
+
+.cv-template img {
     max-width: 100px;
 }

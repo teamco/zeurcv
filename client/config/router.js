@@ -1,4 +1,5 @@
 import {throwError} from '../../lib/logs';
+import {currentRoute} from '../../lib/utils';
 
 FlowRouter.route('/', {
   action: () => {
@@ -15,7 +16,7 @@ FlowRouter.route('/pageOne', {
 /**
  * @method updateUserLog
  */
-const updateUserLog = () => Meteor.call('updateUserLog', FlowRouter.current().path, error => {
+const updateUserLog = () => Meteor.call('updateUserLog', currentRoute().path, error => {
   if (error) {
     return throwError(error);
   }
