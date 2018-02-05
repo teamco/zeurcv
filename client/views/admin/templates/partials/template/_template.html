@@ -1,8 +1,8 @@
 <template name="templateItem">
-    <div class="cv-template widget lazur-bg p-sm text-center pull-left m-l-sm">
+    <div style="background-color: {{color ranking}}" class="cv-template widget p-sm text-center pull-left m-l-sm">
         <div class="m-b-sm">
             <img src="{{image data}}" alt="Template"/>
-            <h2 class="m-xs">{{counter}} Likes</h2>
+            <h2 class="m-xs">{{ranking}} Likes</h2>
             <h3 class="font-bold no-margins">Last usage</h3>
             <small>{{formatDate updatedAt 'short'}}</small>
         </div>

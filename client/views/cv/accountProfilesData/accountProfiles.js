@@ -7,7 +7,7 @@ import {throwError} from '../../../../lib/logs';
  * @constant HEADS
  * @type {[string,string,string,string,string]}
  */
-export const HEADS = ['User', 'Version', 'Headline', 'Updated at', 'Export', 'Action'];
+export const HEADS = ['User', 'Version', 'Headline', 'Updated at', 'Action'];
 
 /**
  * @method configTemplate

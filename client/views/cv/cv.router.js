@@ -3,12 +3,12 @@ FlowRouter.route('/cv', {
   name: 'profile'
 });
 
-FlowRouter.route('/cv/generate/:profileId/preview', {
+FlowRouter.route('/cv/generate/:profileId/templates', {
   action: () => BlazeLayout.render('adminLayout', {content: 'profileTemplate'}),
   name: 'profileTemplate'
 });
 
-FlowRouter.route('/cv/generate/:profileId/:templateId/preview', {
+FlowRouter.route('/cv/generate/:profileId/templates/:templateId/preview', {
   action: () => BlazeLayout.render('adminLayout', {content: 'cvPreview'}),
   name: 'profilePreview'
 });

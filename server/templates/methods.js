@@ -12,7 +12,7 @@ Meteor.methods({
     templates.insert({
       data: buffer,
       public: true,
-      counter: 0,
+      ranking: 0,
       createdAt: new Date(),
       updatedAt: new Date()
     });
@@ -33,7 +33,7 @@ Meteor.methods({
     templates.update({_id: id}, {
       $set: {
         updatedAt: new Date(),
-        counter: template.counter + 1
+        ranking: template.ranking + 1
       }
     });
   }

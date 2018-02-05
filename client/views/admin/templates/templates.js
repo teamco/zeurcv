@@ -29,5 +29,5 @@ Template.templateItems.helpers({
    * @method templates
    * @return {any}
    */
-  templates: () => templates.find().fetch()
+  templates: () => templates.find({}, {sort: {updatedAt: -1, counter: 1}}).fetch()
 });

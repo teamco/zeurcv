@@ -1,5 +1,6 @@
-import {currentRoute, currentUrl, getParamId, parentTemplateName} from '../../../../../../lib/utils';
+import {currentRoute, getParamId, parentTemplateName} from '../../../../../../lib/utils';
 import {throwError} from '../../../../../../lib/logs';
+import {gradient} from '../../../../../../lib/colors';
 
 Template.templateItem.helpers({
 
@@ -13,7 +14,14 @@ Template.templateItem.helpers({
     //encode to base64
     const image = btoa(String.fromCharCode.apply(null, data));
     return 'data:image/png;base64,' + image;
-  }
+  },
+
+  /**
+   * @method color
+   * @param index
+   * @return {*}
+   */
+  color: index => gradient('#23c6c8', '#dedede', 100, index)
 });
 
 Template.templateItem.events({

@@ -1,5 +1,7 @@
 Template.pageHeading.helpers({
-
-    // Route for Home link in breadcrumbs
-    home: 'pageOne'
+  home: '/dashboard',
+  breadcrumbs: () => {
+    // TODO (teamco): Create breadcrumbs
+    return [];
+  }
 });
