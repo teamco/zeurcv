@@ -4,7 +4,7 @@ FlowRouter.route('/cv', {
 });
 
 FlowRouter.route('/cv/generate/:profileId/preview', {
-  action: () => BlazeLayout.render('adminLayout', {content: 'cvTemplate'}),
+  action: () => BlazeLayout.render('adminLayout', {content: 'profileTemplate'}),
   name: 'profileTemplate'
 });
 

@@ -9,15 +9,21 @@ export const _configTemplate = function() {
   subscribe(this, ['templates']);
 };
 
-Template.templates.onRendered(_configTemplate);
+Template.templateItems.onRendered(_configTemplate);
 
-Template.templates.helpers({
+Template.templateItems.helpers({
+
+  /**
+   * @property allowAdd
+   * @type {boolean}
+   */
+  allowAdd: true,
 
   /**
    * @method templatesCount
    * @returns {number}
    */
-  templatesCount: () => templates.find().count(),
+  templateItemsCount: () => templates.find().count(),
 
   /**
    * @method templates

@@ -1,18 +1,18 @@
 import {runTemplateHelper} from '../../../../lib/utils';
 import {configProfileTemplate} from '../accountProfilesData/accountProfiles';
 
-Template.cvTemplate.onRendered(configProfileTemplate);
+Template.profileTemplate.onRendered(configProfileTemplate);
 
-Template.cvTemplate.helpers({
+Template.profileTemplate.helpers({
 
   /**
    * @method templatesCount
    * @return {*}
    */
-  profileTemplatesCount: () => runTemplateHelper(Template.templates, 'templatesCount'),
+  profileTemplatesCount: () => runTemplateHelper(Template.templateItems, 'templateItemsCount'),
 
   /**
    * @method templates
    */
-  templates: () => runTemplateHelper(Template.templates, 'templates')
+  templates: () => runTemplateHelper(Template.templateItems, 'templates')
 });

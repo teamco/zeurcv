@@ -1,4 +1,5 @@
-import {currentRoute, currentUrl, parentTemplateName} from '../../../../../../lib/utils';
+import {currentRoute, currentUrl, getParamId, parentTemplateName} from '../../../../../../lib/utils';
+import {throwError} from '../../../../../../lib/logs';
 
 Template.templateItem.helpers({
 
@@ -25,11 +26,22 @@ Template.templateItem.events({
   'click .cv-template'(event, template) {
     event.preventDefault();
     const parentTemplate = parentTemplateName();
-    if (parentTemplate === 'templates') {
+    if (parentTemplate === 'templateItems') {
       return false;
     }
-    if (parentTemplate === 'cvTemplate') {
-      Meteor.call('updateTemplate', this._id, currentRoute().path);
+    if (parentTemplate === 'profileTemplate') {
+      const currentPath = currentRoute().path;
+      const templateId = this.id;
+      Meteor.call('updateTemplate', templateId, currentPath, error => {
+        if (error) {
+          return throwError(error);
+        } else {
+          FlowRouter.go('profilePreview', {
+            profileId: getParamId('profileId'),
+            templateId: templateId
+          });
+        }
+      });
     }
   }
 });

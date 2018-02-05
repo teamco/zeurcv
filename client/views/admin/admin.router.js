@@ -53,7 +53,7 @@ const routes = {
     url: '/dashboard/setting-actions'
   },
   templates: {
-    all: () => ({action: _adminRenderer('templates'), name: 'templates'}),
+    all: () => ({action: _adminRenderer('templateItems'), name: 'templateItems'}),
     url: '/dashboard/templates'
   },
   users: {

@@ -1,6 +1,8 @@
-<template name="templates">
-    {{> addTemplate }}
-    {{#each templates}}
-        {{> templateItem data=data counter=counter updatedAt=updatedAt }}
-    {{/each}}
+<template name="templateItems">
+    {{> addTemplate allowAdd=allowAdd }}
+    <div class="templates-wrapper">
+        {{#each templates}}
+            {{> templateItem id=_id data=data counter=counter updatedAt=updatedAt }}
+        {{/each}}
+    </div>
 </template>

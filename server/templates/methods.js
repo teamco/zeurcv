@@ -30,10 +30,11 @@ Meteor.methods({
       is404(id, url);
       return false;
     }
-    template.update({
-      updatedAt: new Date(),
-      counter: template.counter + 1
+    templates.update({_id: id}, {
+      $set: {
+        updatedAt: new Date(),
+        counter: template.counter + 1
+      }
     });
-    FlowRouter.go(currentRoute().path + '/preview');
   }
 });
