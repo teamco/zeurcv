@@ -15,7 +15,7 @@
                 </td>
                 <td style="width: 70%;padding-left: 13px;vertical-align: top;">
                     {{> cvHeadline name=profile.formattedName summary=profile.summary }}
-                    {{> cvExperience profile }}
+                    {{> cvExperience positions=profile.positions.values }}
                     {{> cvEducation profile }}
                 </td>
             </tr>
