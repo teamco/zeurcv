@@ -1,0 +1,23 @@
+<template name="editAccountProfile">
+    <div class="m-edit-panel-container{{isVisible show}}">
+        <ul class="m-edit-panel">
+            {{#if noContent content}}
+                <li><label><textarea disabled>No editable content</textarea></label></li>
+            {{/if}}
+            {{#each content}}
+                <li>
+                    <label>
+                        <textarea class="m-edit-text"
+                                  placeholder="{{placeholder this}}">{{innerText}}</textarea>
+                    </label>
+                </li>
+            {{/each}}
+        </ul>
+        {{#if content}}
+            <p>
+                <span class="label label-danger reset-edit-action">Reset</span>
+                <span class="label label-info update-edit-action">Update</span>
+            </p>
+        {{/if}}
+    </div>
+</template>

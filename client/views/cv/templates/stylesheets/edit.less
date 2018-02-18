@@ -1,0 +1,126 @@
+@light-coral: lightcoral;
+@light-blue: lightblue;
+@font-awesome: FontAwesome;
+
+.m-panel.m-selected:before,
+.m-panel:hover:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  right: 0;
+  bottom: 0;
+  border: 1px solid @light-coral;
+  cursor: pointer;
+}
+
+.m-panel.m-selected:after,
+.m-panel:hover:after {
+  content: "\f044";
+  font-family: @font-awesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  position: absolute;
+  width: 30px;
+  top: 0;
+  left: auto;
+  right: 0;
+  bottom: 0;
+  opacity: 0.8;
+  background-color: @light-coral;
+  text-align: center;
+  color: #fff;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.m-panel.m-selected:before {
+  border-color: @light-blue;
+}
+
+.m-panel.m-selected:after {
+  background-color: @light-blue;
+}
+
+.m-edit-panel-container {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  padding: 2px;
+  border: 1px solid #dedede;
+  display: none;
+}
+
+.m-edit-panel-container label {
+  margin: 0;
+}
+
+.m-edit-panel-container p {
+  margin: 5px;
+  float: right;
+}
+
+.m-edit-panel-container p span.label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.m-edit-panel {
+  list-style: none;
+  background-color: @light-coral;
+  padding: 0.1px 5px 0 30px;
+  margin: 0;
+}
+
+.m-edit-panel:after {
+  content: "\f044";
+  font-family: @font-awesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.m-edit-panel.show {
+  display: block;
+}
+
+.m-edit-panel li {
+  margin: 0;
+}
+
+.m-edit-panel li:first-child {
+  margin-top: 5px;
+}
+
+.m-edit-panel textarea {
+  width: 250px;
+  height: 30px;
+  resize: none;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  overflow: hidden;
+  font-weight: normal;
+  color: #333;
+}
+
+.m-edit-panel textarea:focus {
+  height: 100px;
+  overflow-y: auto;
+}
+
+.m-edit-panel textarea::placeholder {
+  color: @light-blue;
+}

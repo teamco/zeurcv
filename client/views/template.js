@@ -135,6 +135,39 @@ Template.registerHelper('redirectToBack', () => {
 Template.registerHelper('ellipsis', str => s.prune(str, 100));
 Template.registerHelper('moreInfoUrl', () => currentRoute().path);
 
-Template.registerHelper('isReady', () => Template.instance().pagination.ready());
+Template.registerHelper('isPaginationReady', () => Template.instance().pagination.ready());
 Template.registerHelper('templatePagination', () => Template.instance().pagination);
 Template.registerHelper('documents', () => Template.instance().pagination.getPage());
+
+/**
+ * @method setHelperMethod
+ * @param {string} templateName
+ * @param {string} methodName
+ * @param {*} returnedValue
+ */
+export const setHelperMethod = (templateName, methodName, returnedValue) => {
+
+  /**
+   * @constant template
+   */
+  const template = Template[templateName];
+
+  if (!template) {
+    return false;
+  }
+
+  /**
+   * @constant _deps
+   * @type {Tracker.Dependency}
+   */
+  const _deps = template.__helpers.get('deps');
+
+  // Set helper method
+  template.__helpers.set(methodName, () => {
+    _deps.depend();
+    return returnedValue;
+  });
+
+  // Trigger to change
+  _deps.changed();
+};

@@ -1,6 +1,5 @@
 <template name="cvPreview">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab:100,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
     <div class="cv-container">
         <table>
             <tbody>
@@ -13,7 +12,7 @@
                         </div>
                     </div>
                 </td>
-                <td style="width: 70%;padding-left: 13px;vertical-align: top;">
+                <td class="m-layout-right-container">
                     {{> cvHeadline name=profile.formattedName summary=profile.summary }}
                     {{> cvExperience positions=profile.positions.values }}
                     {{> cvEducation profile }}
@@ -22,4 +21,5 @@
             </tbody>
         </table>
     </div>
+    {{> editAccountProfile }}
 </template>
