@@ -54,11 +54,7 @@ Template.body.events({
           },
           target: e.target.outerHTML
         },
-        (error, result) => {
-          if (throwError(error)) {
-            return false;
-          }
-        }
+        (error, result) => throwError(error) ? false : result
     );
   }
 });

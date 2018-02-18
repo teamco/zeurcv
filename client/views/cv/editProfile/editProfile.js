@@ -32,6 +32,15 @@ Template.editAccountProfile.helpers({
   },
 
   /**
+   * @method addable
+   * @return {boolean}
+   */
+  addable: () => {
+    _deps.depend();
+    return false;
+  },
+
+  /**
    * @method noContent
    * @param content
    * @return {boolean}

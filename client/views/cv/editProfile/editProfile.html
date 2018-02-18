@@ -15,6 +15,9 @@
         </ul>
         {{#if content}}
             <p>
+                {{#if addable}}
+                    <span class="label label-success add-edit-action">Add</span>
+                {{/if}}
                 <span class="label label-danger reset-edit-action">Reset</span>
                 <span class="label label-info update-edit-action">Update</span>
             </p>

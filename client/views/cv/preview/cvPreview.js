@@ -41,6 +41,7 @@ editableAreas.forEach(area => {
 
       const editableItems = Array.from(e.target.querySelectorAll('[data-edit="true"]'));
       setHelperMethod('editAccountProfile', 'show', true);
+      setHelperMethod('editAccountProfile', 'addable', !!e.target.getAttribute('data-add'));
       setHelperMethod('editAccountProfile', 'content', editableItems);
     }
   });
