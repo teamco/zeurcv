@@ -1,5 +1,3 @@
-import {runTemplateHelper} from '../../../../lib/utils';
-
 /**
  * @constant _deps
  * @type {Tracker.Dependency}

@@ -2,20 +2,24 @@
 @light-blue: lightblue;
 @font-awesome: FontAwesome;
 
-.m-panel.m-selected:before,
-.m-panel:hover:before {
+.m-editable-panel {
+  position: relative;
+}
+
+.m-editable-panel.m-selected:before,
+.m-editable-panel:hover:before {
   content: " ";
   position: absolute;
-  top: 0;
+  top: -5px;
   left: -5px;
   right: 0;
-  bottom: 0;
+  bottom: -5px;
   border: 1px solid @light-coral;
   cursor: pointer;
 }
 
-.m-panel.m-selected:after,
-.m-panel:hover:after {
+.m-editable-panel.m-selected:after,
+.m-editable-panel:hover:after {
   content: "\f044";
   font-family: @font-awesome;
   font-style: normal;
@@ -23,10 +27,10 @@
   text-decoration: inherit;
   position: absolute;
   width: 30px;
-  top: 0;
+  top: -5px;
   left: auto;
   right: 0;
-  bottom: 0;
+  bottom: -5px;
   opacity: 0.8;
   background-color: @light-coral;
   text-align: center;
@@ -35,11 +39,11 @@
   cursor: pointer;
 }
 
-.m-panel.m-selected:before {
+.m-editable-panel.m-selected:before {
   border-color: @light-blue;
 }
 
-.m-panel.m-selected:after {
+.m-editable-panel.m-selected:after {
   background-color: @light-blue;
 }
 
