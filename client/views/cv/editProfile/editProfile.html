@@ -8,6 +8,7 @@
                 <li>
                     <label>
                         <textarea class="m-edit-text"
+                                  title="{{placeholder this}}"
                                   placeholder="{{placeholder this}}">{{innerText}}</textarea>
                     </label>
                 </li>
@@ -16,10 +17,11 @@
         {{#if content}}
             <p>
                 {{#if addable}}
-                    <span class="label label-success add-edit-action">Add</span>
+                    <span class="label label-success add-edit-action">Add before</span>
+                    <span class="label label-success add-edit-action">Add after</span>
                 {{/if}}
-                <span class="label label-danger reset-edit-action">Reset</span>
                 <span class="label label-info update-edit-action">Update</span>
+                <span class="label label-danger delete-edit-action">Delete</span>
             </p>
         {{/if}}
     </div>
