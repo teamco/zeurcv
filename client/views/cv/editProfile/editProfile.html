@@ -1,5 +1,5 @@
 <template name="editAccountProfile">
-    <div class="m-edit-panel-container{{isVisible show}}">
+    <div data-reference="{{dataReference}}" class="m-edit-panel-container{{isVisible show}}">
         <ul class="m-edit-panel">
             {{#if noContent content}}
                 <li><label><textarea disabled>No editable content</textarea></label></li>
@@ -15,14 +15,18 @@
             {{/each}}
         </ul>
         {{#if content}}
-            <p>
+            <p class="pull-right m-t-xs m-r-xs m-b-xs m-l-xs">
                 {{#if addable}}
-                    <span class="label label-success add-edit-action">Add before</span>
-                    <span class="label label-success add-edit-action">Add after</span>
+                    {{> actionLabel customCss='add-before-action' style='success' type='arrow-up' label='Add'}}
+                    {{> actionLabel customCss='add-after-action' style='success' type='arrow-down' label='Add'}}
                 {{/if}}
-                <span class="label label-info update-edit-action">Update</span>
-                <span class="label label-danger delete-edit-action">Delete</span>
+                {{> actionLabel customCss='delete-edit-action' style='warn' type='trash' label='Delete'}}
             </p>
         {{/if}}
+    </div>
+    <div class="m-edit-panel-exporter">
+        {{> actionLabel customCss='update-edit-action' style='info' type='wrench' label='Update'}}
+        {{> generateTo type='file-pdf-o' label='PDF' id=_id style='danger'}}
+        {{> generateTo type='file-word-o' label='DOC' id=_id style='success'}}
     </div>
 </template>

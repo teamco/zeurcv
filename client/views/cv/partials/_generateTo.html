@@ -1,8 +1,5 @@
 <template name="generateTo">
     <a id="generator-{{type}}" href="{{generatorUrl id}}/{{friendlyUrl label}}" title="{{label}}">
-        <span class="generator label label-{{style}}">
-            {{> fa type=type}}
-            {{label}}
-        </span>
+        {{> actionLabel customCss='generator' style=style type=type label=label}}
     </a>
 </template>

@@ -41,6 +41,15 @@ Template.editAccountProfile.helpers({
   },
 
   /**
+   * @method dataReference
+   * @return {string}
+   */
+  dataReference: () => {
+    _deps.depend();
+    return '';
+  },
+
+  /**
    * @method noContent
    * @param content
    * @return {boolean}
@@ -65,7 +74,7 @@ Template.editAccountProfile.helpers({
 Template.editAccountProfile.events({
 
   /**
-   * @method input
+   * @event input
    * @param e
    */
   'input .m-edit-text'(e) {
@@ -74,5 +83,21 @@ Template.editAccountProfile.events({
     const reference = e.target.getAttribute('placeholder');
     const area = document.querySelector('[data-label="' + reference + '"]');
     area.innerText = e.target.value;
+  },
+
+  /**
+   * @event click
+   * @param e
+   */
+  'click .add-before-action'(e) {
+    e.preventDefault();
+
+    const attr = 'data-reference';
+    const reference = e.target.closest('[' + attr + ']').getAttribute(attr);
+    const cvContainer = document.querySelector('.cv-container');
+    const content = cvContainer.querySelector('[' + attr + '="' + reference + '"]');
+    //const area = document.querySelector('[data-label="' + reference + '"]');
+
+    debugger;
   }
 });

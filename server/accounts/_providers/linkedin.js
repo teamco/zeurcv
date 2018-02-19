@@ -1,4 +1,5 @@
 import {throwError} from '../../../lib/logs';
+import {HTTP} from 'meteor/http';
 
 /**
  * @method linkedinProfile
@@ -14,7 +15,7 @@ export const linkedinProfile = (user, info) => {
   const basicProfileFields = [
         'first-name', 'last-name', 'maiden-name', 'formatted-name', 'phonetic-first-name',
         'phonetic-last-name', 'formatted-phonetic-name', 'headline', 'location',
-        'industry', 'num-connections', 'num-connections-capped', 'summary',
+        'industry', 'num-connections', 'num-connections-capped', 'summary', 'current-share',
         'specialties', 'positions', 'picture-url', 'picture-urls::(original)', 'site-standard-profile-request'],
       emailFields = ['email-address'],
       fullProfileFields = [
@@ -35,14 +36,11 @@ export const linkedinProfile = (user, info) => {
 
   /**
    * @constant response
-   * @type {{error, data: {formattedName, positions, emailAddress, siteStandardProfileRequest, pictureUrl}}}
+   * @type {*|{error, data: {formattedName, positions, emailAddress, siteStandardProfileRequest, pictureUrl}}}
    */
-  const response = Meteor.http.get(requestUrl, {
+  const response = HTTP.call('GET', requestUrl, {
     headers: {'User-Agent': 'Meteor/1.0'},
-    params: {
-      oauth2_access_token: accessToken,
-      format: 'json'
-    }
+    params: {oauth2_access_token: accessToken, format: 'json'}
   });
 
   if (response.error) {

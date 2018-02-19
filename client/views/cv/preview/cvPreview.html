@@ -7,14 +7,14 @@
                 <td class="m-layout-left-container">
                     <div class="m-layout-left">
                         <div class="m-layout-bg">
-                            {{> cvContactInfo email=profile.emailAddress address=profile.location.name }}
+                            {{> cvContactInfo title="Contact Information" items=contactInfoData }}
                             {{> cvSkills profile }}
                         </div>
                     </div>
                 </td>
                 <td class="m-layout-right-container">
                     {{> cvHeadline name=profile.formattedName summary=profile.summary }}
-                    {{> cvExperience positions=profile.positions.values }}
+                    {{> cvExperience title="Experience" positions=profile.positions.values }}
                     {{> cvEducation profile }}
                 </td>
             </tr>

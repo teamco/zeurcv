@@ -1,8 +1,9 @@
 <template name="cvExperience">
     <div class="m-panel">
-        <h3 class="m-txt-title">Experience</h3>
+        <h3 class="m-txt-title">{{title}}</h3>
         {{#each positions}}
-            <div class="m-layout-3-3 m-panel-child m-editable-panel" data-add="true">
+            <div data-reference="Experience-{{@index}}" class="m-layout-3-3 m-panel-child m-editable-panel"
+                 data-add="true">
                 <div class="m-layout-1-3">
                     <span class="m-txt-subtitle"
                           data-label="Company"

@@ -1,25 +1,16 @@
 <template name="cvContactInfo">
-    <div class="m-panel m-panel-left">
-        <h3 class="m-txt-title">Contact Information</h3>
+    <div data-reference="{{title}}" class="m-panel m-panel-left">
+        <h3 class="m-txt-title">{{title}}</h3>
         <div class="m-editable-panel">
-            <div class="m-content">
-                <span class="m-content-title">Email</span>
-                <span class="m-content-content m-content-mail"
-                      data-label="Email"
-                      data-edit="true">{{email}}</span>
-            </div>
-            <div class="m-content">
-                <span class="m-content-title">Address</span>
-                <span class="m-content-content"
-                      data-edit="true"
-                      data-label="Address">{{address}}</span>
-            </div>
-            <div class="m-content">
-                <span class="m-content-title">Phone</span>
-                <span class="m-content-content"
-                      data-label="Phone"
-                      data-edit="true">{{phone}}</span>
-            </div>
+            {{#each items}}
+                <div class="m-content">
+                    <span class="m-content-title">{{label}}</span>
+                    <span class="m-content-content {{css}}"
+                          data-label="{{label}}"
+                          data-store="{{store}}"
+                          data-edit="true">{{data}}</span>
+                </div>
+            {{/each}}
         </div>
     </div>
 </template>
