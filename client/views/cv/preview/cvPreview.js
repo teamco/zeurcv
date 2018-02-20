@@ -78,10 +78,17 @@ editableAreas.forEach(area => {
 
       const editableItems = Array.from(node.querySelectorAll('[data-edit="true"]'));
       const reference = node.parentElement.querySelector('[data-reference]');
+      const content = editableItems.map(item => {
+        return {
+          dataset: item.dataset,
+          value: item.innerText,
+          checked: !!item.value
+        };
+      });
 
       setHelperMethod('editAccountProfile', 'show', true);
       setHelperMethod('editAccountProfile', 'addable', !!e.target.getAttribute('data-add'));
-      setHelperMethod('editAccountProfile', 'content', editableItems);
+      setHelperMethod('editAccountProfile', 'content', content);
       setHelperMethod('editAccountProfile', 'dataReference',
           (reference || node.closest('[data-reference]')).getAttribute('data-reference'));
     }

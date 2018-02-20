@@ -102,25 +102,33 @@
 }
 
 .m-edit-panel li {
-  margin: 0;
+  margin: 0 0 5px 0;
 }
 
 .m-edit-panel li:first-child {
-  margin-top: 5px;
+  margin: 5px 0;
 }
 
-.m-edit-panel textarea {
+.m-edit-panel li:last-child {
+  margin: 0;
+}
+
+.m-edit-panel .m-edit-text {
   width: 250px;
   height: 30px;
   resize: none;
   border: none;
   border-radius: 2px;
   outline: none;
-  -webkit-transition: height 0.5s;
-  transition: height 0.5s;
   overflow: hidden;
   font-weight: normal;
   color: #333;
+  padding: 0 5px;
+}
+
+.m-edit-panel textarea {
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
 }
 
 .m-edit-panel textarea:focus {
@@ -128,6 +136,14 @@
   overflow-y: auto;
 }
 
+.m-edit-panel input[type="text"]::placeholder,
 .m-edit-panel textarea::placeholder {
   color: @light-blue;
+}
+
+.m-edit-panel input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  float: left;
+  margin: 3px;
 }

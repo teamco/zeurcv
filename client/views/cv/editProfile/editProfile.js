@@ -50,6 +50,15 @@ Template.editAccountProfile.helpers({
   },
 
   /**
+   * @method fieldType
+   * @return {string}
+   */
+  fieldType: () => {
+    _deps.depend();
+    return 'hidden';
+  },
+
+  /**
    * @method noContent
    * @param content
    * @return {boolean}
@@ -57,18 +66,11 @@ Template.editAccountProfile.helpers({
   noContent: content => !content.length,
 
   /**
-   * @method placeholder
-   * @param element
-   * @return {string | (string | null) | string}
-   */
-  placeholder: element => element.getAttribute('data-label'),
-
-  /**
    * @method isVisible
    * @param show
    * @return {string}
    */
-  isVisible: (show) => show ? ' show' : ''
+  isVisible: (show) => show ? ' show' : '',
 });
 
 Template.editAccountProfile.events({

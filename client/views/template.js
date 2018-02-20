@@ -128,6 +128,8 @@ Template.registerHelper('redirectToBack', () => {
   }
 });
 
+Template.registerHelper('generateDomId', (element) =>
+    element.dataset.label.toLowerCase().replace(/[ .,\/#!$%^&*;:{}=\-_`~()]/g, '-'));
 Template.registerHelper('ellipsis', str => s.prune(str, 100));
 Template.registerHelper('moreInfoUrl', () => currentRoute().path);
 

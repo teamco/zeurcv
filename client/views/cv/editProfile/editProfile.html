@@ -5,13 +5,7 @@
                 <li><label><textarea disabled>No editable content</textarea></label></li>
             {{/if}}
             {{#each content}}
-                <li>
-                    <label>
-                        <textarea class="m-edit-text"
-                                  title="{{placeholder this}}"
-                                  placeholder="{{placeholder this}}">{{innerText}}</textarea>
-                    </label>
-                </li>
+                <li>{{> editForm css="m-edit-text" item=this}}</li>
             {{/each}}
         </ul>
         {{#if content}}
