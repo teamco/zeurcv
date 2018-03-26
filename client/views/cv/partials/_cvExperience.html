@@ -11,32 +11,16 @@
                            data-reference="positions.isCurrent"
                            data-edit="true"
                            value="{{isCurrent}}"/>
-                    <span class="m-txt-subtitle"
-                          data-label="Company name"
-                          data-type="text"
-                          data-reference="positions.company.name"
-                          data-edit="true"><b>{{company.name}}</b></span>
-                    <span class="m-txt-subtitle"
-                          data-label="Location"
-                          data-type="text"
-                          data-reference="positions.location.name"
-                          data-edit="true">{{location.name}}</span>
-                    <span class="m-txt-subtitle"
-                          data-type="month"
-                          data-label="Start date"
-                          data-reference="positions.startDate.month|positions.startDate.year"
-                          data-edit="true">{{startDate.month}}/{{startDate.year}}</span>
+                    {{> subTitle label="Company name" type="text" name=company.name reference="positions.company.name"}}
+                    {{> subTitle label="Location" type="text" name=location.name reference="positions.location.name"}}
+                    {{> subTitle label="Start year" type="year" name=startDate.year reference="positions.startDate.year"}}
+                    {{> subTitle label="Start month" type="month" name=startDate.month reference="positions.startDate.month"}}
                     {{#unless isCurrent}}
-                        <span class="m-txt-subtitle"
-                              data-type="month"
-                              data-label="End date"
-                              data-reference="positions.endDate.month|positions.endDate.year"
-                              data-edit="true">{{endDate.month}}/{{endDate.year}}</span>
+                        {{> subTitle label="End year" type="year" name=endDate.year reference="positions.startDate.year"}}
+                        {{> subTitle label="End month" type="month" name=endDate.month reference="positions.endDate.month"}}
                     {{/unless}}
                 </div>
-                <div class="m-steps-ball">
-                    <div class="m-steps-ball-ball"></div>
-                </div>
+                {{> stepBall }}
                 <div class="m-layout-2-3">
                     <h4 class="m-txt-title-second"
                         data-label="Title"

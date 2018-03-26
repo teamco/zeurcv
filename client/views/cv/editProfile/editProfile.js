@@ -50,15 +50,6 @@ Template.editAccountProfile.helpers({
   },
 
   /**
-   * @method fieldType
-   * @return {string}
-   */
-  fieldType: () => {
-    _deps.depend();
-    return 'hidden';
-  },
-
-  /**
    * @method noContent
    * @param content
    * @return {boolean}

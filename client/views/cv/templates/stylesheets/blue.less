@@ -155,8 +155,18 @@
   padding-right: 30px
 }
 
-.m-txt-subtitle b {
-  font-weight: 700
+.m-txt-subtitle[data-type="month"] {
+  display: inline-block;
+  float: right;
+  padding: 0;
+}
+
+.m-txt-subtitle[data-type="month"]:after {
+  content: "/";
+}
+
+.m-txt-subtitle[data-type="year"] {
+  float: right;
 }
 
 .m-layout-bg {

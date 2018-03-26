@@ -1,0 +1,9 @@
+<template name="text">
+    <label for="{{generateDomId this.item}}">
+        <input id="{{generateDomId this.item}}"
+               type="text"
+               class="{{css}}"
+               title="{{this.item.dataset.label}}"
+               placeholder="{{this.item.dataset.label}}" value="{{this.item.value}}"/>
+    </label>
+</template>
