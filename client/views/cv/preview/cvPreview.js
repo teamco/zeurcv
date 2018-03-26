@@ -7,7 +7,7 @@ import {setHelperMethod} from '../../template';
 /**
  * @method _profile
  * @param {string} [id]
- * @return {any}
+ * @return {{emailAddress, location, phone}}
  */
 function _profile(id) {
   id = id || getParamId('profileId');
@@ -29,6 +29,11 @@ Template.cvPreview.helpers({
    * @property contactInfoData
    */
   contactInfoData: () => {
+
+    /**
+     * @constant profile
+     * @type {{emailAddress, location, phone}}
+     */
     const profile = _profile();
     return profile ? [
       {
