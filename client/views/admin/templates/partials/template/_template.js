@@ -6,14 +6,14 @@ Template.templateItem.helpers({
 
   /**
    * @method image
-   * @param data
+   * @param {Uint8Array} buffer
    * @return {string}
    */
-  image: data => {
+  image: buffer => {
 
     //encode to base64
-    const image = btoa(String.fromCharCode.apply(null, data));
-    return 'data:image/png;base64,' + image;
+    const blob = new Blob([buffer], {type: 'image/png'});
+    return URL.createObjectURL(blob);
   },
 
   /**

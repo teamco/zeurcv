@@ -10,6 +10,10 @@ Meteor.methods({
 
     const user = Meteor.user();
     const setting = Meteor.settings.linkedin;
+
+    /**
+     * @type {{init}}
+     */
     const Linkedin = require('node-linkedin')(setting.client_id, setting.client_secret);
 
     if (!user) {
@@ -17,12 +21,9 @@ Meteor.methods({
     }
 
     const provider = user.profile.provider;
-
-    /**
-     * @type {{people: {me}}}
-     */
     const linkedin = Linkedin.init(user.services[provider].accessToken);
     const bound = Meteor.bindEnvironment(callback => callback());
+
     linkedin.people.me((error, $in) => bound(() => error ?
         throwError(error) :
         Meteor.call('updateUserProfileData', $in)));
