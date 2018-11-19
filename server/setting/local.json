@@ -1,0 +1,14 @@
+{
+  "google": {
+    "client_id": "500306517259-4g7bbii47dqu2altfoc1pe502726upvn.apps.googleusercontent.com",
+    "client_secret": "q5Y78ZMGDx_6j2KLFMQ2ZC_W"
+  },
+  "linkedin": {
+    "client_id": "78z3l41abgdko0",
+    "client_secret": "uox0oobwFH7EKCsC"
+  },
+  "facebook": {
+    "app_id": "158870788218066",
+    "client_secret": "53342f8ab40629668d54421403bf9563"
+  }
+}
