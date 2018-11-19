@@ -53,17 +53,39 @@ function _getProviderInfo(provider, user) {
   return opts;
 }
 
+/**
+ * @method _handleLinkedInOpts
+ * @param opts
+ * @returns {*}
+ * @private
+ */
+function _handleLinkedInOpts(opts) {
+  if (opts.profile.provider === 'linkedin') {
+    if (!opts.profile.name) {
+      opts.profile.name = [
+        opts.profile.firstName,
+        opts.profile.lastName
+      ].join(' ');
+    }
+  }
+  return opts;
+}
+
 Accounts.onCreateUser((options, user) => {
   const provider = Object.keys(user.services).shift() || '',
       auth = _getProviderInfo(provider, user);
 
   options = options || {};
   options.profile = options.profile || {};
+
   options.profile.picture = auth.picture;
   options.profile.provider = provider;
   options.profile.email = auth.email;
   options.profile.link = auth.link;
   options.profile.updatedAt = user.createdAt;
+
+  options = _handleLinkedInOpts(options);
+
   user.profile = options.profile;
 
   if (_inRole(admins, auth.email)) _defineRoles(user, ['admin']);
