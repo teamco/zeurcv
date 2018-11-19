@@ -7,7 +7,7 @@ import {isLoggedIn} from '../../../lib/users';
 
 function checkLoggedIn(ctx, redirect) {
   if (!isLoggedIn()) {
-    redirect('/');
+    //redirect('/');
   }
 }
 
