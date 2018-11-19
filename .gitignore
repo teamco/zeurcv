@@ -1,4 +1,4 @@
 node_modules/
 .meteor/local
 .idea
-/server/setting/local.json
+#/server/setting/local.json

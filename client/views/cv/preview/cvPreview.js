@@ -21,7 +21,7 @@ Template.cvPreview.helpers({
   /**
    * @method profile
    * @param {string} [id]
-   * @return {any}
+   * @return {{emailAddress, location, phone}}
    */
   profile: id => _profile(id),
 
