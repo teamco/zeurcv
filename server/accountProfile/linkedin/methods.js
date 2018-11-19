@@ -9,6 +9,8 @@ Meteor.methods({
   fetchUserProfileData: function() {
 
     const user = Meteor.user();
+    const setting = Meteor.settings.linkedin;
+    const Linkedin = require('node-linkedin')(setting.client_id, setting.client_secret);
 
     if (!user) {
       return is403();
@@ -19,7 +21,7 @@ Meteor.methods({
     /**
      * @type {{people: {me}}}
      */
-    const linkedin = Linkedin().init(user.services[provider].accessToken);
+    const linkedin = Linkedin.init(user.services[provider].accessToken);
     const bound = Meteor.bindEnvironment(callback => callback());
     linkedin.people.me((error, $in) => bound(() => error ?
         throwError(error) :

@@ -8,6 +8,7 @@
     "@babel/runtime": "^7.1.5",
     "babel-runtime": "^6.26.0",
     "jquery": "^2.2.4",
-    "meteor-node-stubs": "^0.3.3"
+    "meteor-node-stubs": "^0.3.3",
+    "node-linkedin": "^0.5.6"
   }
 }
