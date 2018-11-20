@@ -58,6 +58,6 @@ Template.eventFormData.onRendered(async function() {
   subscribe(this, ['events']);
   this.$('.datetimepicker').datetimepicker();
   this.$('.timepicker').datetimepicker({
-    format: 'LT'
+    format: 'HH:mm:ss'
   });
 });
