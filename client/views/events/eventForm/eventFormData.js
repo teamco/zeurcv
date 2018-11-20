@@ -1,5 +1,6 @@
 import {subscribe} from '../../template';
 import {throwError} from '../../../../lib/logs';
+import {getParamId} from '../../../../lib/utils';
 
 /**
  * @method _filterValueByType
@@ -32,7 +33,7 @@ Template.eventFormData.events({
     const $event = $('.event-form').find('input:enabled, textarea:enabled'),
         data = _collectData($event);
 
-    Meteor.call('updateEvent', data, (error, result) => {
+    Meteor.call('updateEvent', {data, _id: getParamId('id')}, (error, result) => {
       if (throwError(error)) {
         return false;
       }

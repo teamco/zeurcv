@@ -5,26 +5,26 @@ Meteor.methods({
 
   /**
    * @method updateEvent
-   * @param data
+   * @param eventData
    * @returns {*}
    */
-  updateEvent(data) {
+  updateEvent(eventData) {
     let event;
-    if (data._id) {
-      event = events.findOne({_id: data._id});
+    if (eventData._id) {
+      event = events.findOne({_id: eventData._id});
       if (event) {
-        data.updatedAt = new Date();
-        return events.update({_id: data._id}, {$set: data});
+        eventData.data.updatedAt = new Date();
+        return events.update({_id: eventData._id}, {$set: eventData.data});
       } else {
-        is404(data._id, '/events');
+        is404(eventData._id, '/events');
         return false;
       }
     } else {
-      data.createdAt = new Date();
-      data.updatedAt = new Date();
+      eventData.data.createdAt = new Date();
+      eventData.data.updatedAt = new Date();
     }
 
-    return events.findOne({_id: events.insert(data)});
+    return events.findOne({_id: events.insert(eventData.data)});
   },
 
   destroyEvent(_id) {
