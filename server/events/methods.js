@@ -27,8 +27,14 @@ Meteor.methods({
     return events.findOne({_id: events.insert(data)});
   },
 
-  destroyEvent(event) {
-    //TODO
+  destroyEvent(_id) {
+    event = events.findOne({_id: _id});
+    if (event) {
+      events.remove(event._id);
+    } else {
+      is404(event._id, '/events');
+      return false;
+    }
   }
 
 });

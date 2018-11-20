@@ -41,14 +41,14 @@ Template.eventsData.events({
 
     BootstrapModalPrompt.prompt({
       title: TAPi18n.__('event_delete'),
-      content: TAPi18n.__('confirm_event_delete', data)
+      content: TAPi18n.__('confirm_event_delete', data.name)
     }, confirmed => {
       if (confirmed) {
-        Meteor.call('destroyEvent', data, (error, result) => {
+        Meteor.call('destroyEvent', data._id, (error, result) => {
           if (throwError(error)) {
             return false;
           }
-          Bert.alert(TAPi18n.__('event_deleted', data), 'info');
+          Bert.alert(TAPi18n.__('event_deleted', data.name), 'info');
         });
       }
     });
