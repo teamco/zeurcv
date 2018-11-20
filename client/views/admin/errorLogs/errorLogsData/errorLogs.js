@@ -4,6 +4,7 @@ import {userLog} from '../../../../../model/userLog.model';
 import {errorLog} from '../../../../../model/errorLog.model';
 import {errorLogPages} from '../../../../../model/errorLog.model';
 import {isAdmin} from '../../../../../lib/users';
+import {userPages} from '../../../../../model/users.model';
 
 /**
  * @constant HEADS
@@ -39,6 +40,7 @@ export const paginateErrors = () => {
       }
     });
   }
+  errorLogPages.requestPage(1);
 };
 
 Template.errorLogsData.onRendered(function() {

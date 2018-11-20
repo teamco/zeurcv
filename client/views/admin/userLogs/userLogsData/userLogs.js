@@ -3,6 +3,7 @@ import {userLog} from '../../../../../model/userLog.model';
 import {userLogPages} from '../../../../../model/userLog.model';
 import {sharedMethods} from '../../../../../lib/logs';
 import {subscribe} from '../../../template';
+import {userPages} from '../../../../../model/users.model';
 
 /**
  * @constant HEADS
@@ -21,6 +22,7 @@ export const _configTemplate = function() {
       userLogPages.set({filters: {userId: user._id}});
     }
   });
+  userLogPages.requestPage(1);
 };
 
 Template.userLogsData.onRendered(_configTemplate);

@@ -1,0 +1,66 @@
+<template name="eventFormData">
+  <div class="panel panel-default">
+    <div class="panel-body event-form">
+      <div class="input-group">
+        <span class="input-group-addon" id="event-name">Name</span>
+        <input name="name" {{disabled}}
+               type="text"
+               class="form-control"
+               placeholder="Event Name"
+               aria-describedby="event-name"
+               value="{{event.name}}"/>
+      </div>
+      <div class="input-group m-t-sm">
+        <span class="input-group-addon" id="event-description">Description</span>
+        <textarea name="description" {{disabled}}
+                  class="form-control"
+                  placeholder="Event Description"
+                  aria-describedby="event-description">{{event.description}}</textarea>
+      </div>
+      <div class="input-group m-t-sm">
+        <span class="input-group-addon" id="event-embed-code">
+          <i class="glyphicon glyphicon-hd-video"></i>
+          Embed Code
+        </span>
+        <textarea name="embedCode" {{disabled}}
+                  class="form-control"
+                  placeholder="Event Embed Code"
+                  aria-describedby="event-embed-code">{{event.embedCode}}</textarea>
+      </div>
+      <div id="inject-embed-code" class="input-group m-t-sm">
+        <a data-type="preview-event" class="btn btn-info m-b-sm">Preview</a>
+        <div class="iframe"></div>
+      </div>
+      <div class="input-group timepicker m-t-sm">
+        <span class="input-group-addon" id="event-duration">
+          <i class="glyphicon glyphicon-time"></i>
+          Duration
+        </span>
+        <input class="set-due-date form-control" {{disabled}}
+               type="text"
+               data-type="time"
+               name="duration"
+               aria-describedby="event-duration"
+               placeholder="Event Duration"
+               value="{{event.duration}}"/>
+      </div>
+      <div class="input-group datetimepicker m-t-sm">
+        <span class="input-group-addon" id="event-started-at">
+          <i class="glyphicon glyphicon-calendar"></i>
+          Start at
+        </span>
+        <input class="set-due-date form-control" {{disabled}}
+               type="text"
+               data-type="date"
+               name="startedAt"
+               aria-describedby="event-started-at"
+               placeholder="Event Start at"
+               value="{{formatDate event.startedAt 'MMMM DD, YYYY'}}"/>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <a href="/events" class="btn btn-default">Back</a>
+      <a href="/events/{{event.actionUrl}}" data-type="update-event" class="btn btn-info">{{actionName}}</a>
+    </div>
+  </div>
+</template>

@@ -1,4 +1,4 @@
-import {isCurrentUser, isAdmin, currentUser, usersCollection} from '../../../../lib/users';
+import {currentUser, isAdmin, isCurrentUser, usersCollection} from '../../../../lib/users';
 import {logsUser, throwError} from '../../../../lib/logs';
 import {subscribe} from '../../template';
 import {userPages} from '../../../../model/users.model';
@@ -16,10 +16,15 @@ export const HEADS = ['Name', 'Email', 'Provider', 'Last login', 'Actions'];
 function _templateConfig() {
   subscribe(this, ['users', 'userStatus', 'roles'], () => {
     const user = logsUser();
-    if (user && user._id && !isAdmin()) {
-      userPages.set({filters: {userId: user._id}});
+    let filters = {filters: {userId: (user || {})._id}};
+    if (isAdmin()) {
+      filters = {};
+    }
+    if (user && user._id) {
+      userPages.set(filters);
     }
   });
+  userPages.requestPage(1);
 }
 
 Template.usersData.events({

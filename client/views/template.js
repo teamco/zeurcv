@@ -1,4 +1,4 @@
-import {runTemplateHelper, pageTitle, templateName, currentRoute} from '../../lib/utils';
+import {currentRoute, pageTitle, runTemplateHelper, templateName} from '../../lib/utils';
 import {throwError} from '../../lib/logs';
 import {currentUser} from '../../lib/users';
 
@@ -18,7 +18,7 @@ export const subscribe = (template, models, fn) => {
   }
 
   // Do reactive stuff when subscribe is ready
-  template.autorun(() => {
+  Tracker.autorun(() => {
     let ready = 1;
     for (let i = 0; i < models.length; i++) {
       if (subs[models[i]].ready()) {

@@ -1,7 +1,7 @@
 import {allowModel} from './methods';
 
 /**
- * @instance userLogPages
+ * @instance userPages
  * @type {Meteor.Pagination}
  */
 export const userPages = new Meteor.Pagination(Accounts.users, {
