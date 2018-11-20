@@ -10,9 +10,8 @@ import {throwError} from '../../../../lib/logs';
  */
 function _filterValueByType(input, type) {
   type = type || input.type;
-  if (type === 'date') return new Date(input.value);
   if (type === 'checkbox') return input.checked;
-  if (['text', 'textarea', 'time'].indexOf(type) > -1) return input.value;
+  if (['text', 'textarea', 'time', 'date'].indexOf(type) > -1) return input.value;
 }
 
 /**
@@ -27,7 +26,7 @@ function _collectData($elements) {
 }
 
 Template.eventFormData.events({
-  'click a[data-type="update-event"]': event => {
+  'click a[data-type="handle-event-Create"]': event => {
     event.preventDefault();
 
     const $event = $('.event-form').find('input:enabled, textarea:enabled'),

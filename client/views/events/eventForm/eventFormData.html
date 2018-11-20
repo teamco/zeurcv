@@ -55,12 +55,12 @@
                name="startedAt"
                aria-describedby="event-started-at"
                placeholder="Event Start at"
-               value="{{formatDate event.startedAt 'MMMM DD, YYYY'}}"/>
+               value="{{event.startedAt}}"/>
       </div>
     </div>
     <div class="panel-footer">
       <a href="/events" class="btn btn-default">Back</a>
-      <a href="/events/{{event.actionUrl}}" data-type="update-event" class="btn btn-info">{{actionName}}</a>
+      <a data-type="handle-event-{{actionName}}" class="btn btn-info">{{actionName}}</a>
     </div>
   </div>
 </template>

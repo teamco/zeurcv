@@ -7,7 +7,14 @@ Template.eventData.onRendered(function() {
 });
 
 Template.eventData.helpers({
-  event: () => {
-    return events.findOne({_id: getParamId('id')})
+  event: () => events.findOne({_id: getParamId('id')})
+});
+
+Template.eventData.events({
+  'click a[data-type="handle-event-Edit"]': event => {
+    event.preventDefault();
+
+    const $elements = $('.event-form').find('input:disabled, textarea:disabled');
+    _.each($elements, input => input.removeAttribute("disabled"));
   }
 });
