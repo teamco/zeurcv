@@ -11,7 +11,7 @@
       <div><strong>Start at:</strong> {{formatDate startedAt 'long'}}</div>
     </td>
     <td>{{description}}</td>
-    <td>
+    <td class="text-nowrap">
       {{> moreInfoLink linkTo='events' id=_id}}
       <a href="/events/{{_id}}" class="label label-danger delete-event">Delete</a>
     </td>
