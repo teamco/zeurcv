@@ -15,6 +15,9 @@ Template.eventData.events({
     event.preventDefault();
 
     const $elements = $('.event-form').find('input:disabled, textarea:disabled');
-    _.each($elements, input => input.removeAttribute("disabled"));
+    _.each($elements, input => input.removeAttribute('disabled'));
+
+    event.target.innerText = 'Update';
+    event.target.setAttribute('data-type', 'handle-event-Create');
   }
 });
