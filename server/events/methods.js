@@ -19,6 +19,9 @@ Meteor.methods({
         is404(data._id, '/events');
         return false;
       }
+    } else {
+      data.createdAt = new Date();
+      data.updatedAt = new Date();
     }
 
     return events.findOne({_id: events.insert(data)});
