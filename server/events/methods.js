@@ -27,6 +27,10 @@ Meteor.methods({
     return events.findOne({_id: events.insert(eventData.data)});
   },
 
+  /**
+   * @param _id
+   * @returns {boolean}
+   */
   destroyEvent(_id) {
     event = events.findOne({_id: _id});
     if (event) {
