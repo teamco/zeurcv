@@ -19,6 +19,10 @@ Template.commentatorsData.helpers({
     const event = events.findOne({_id: _id});
     return (event.viewers || []).length;
   },
+  commentators: _id => {
+    const event = events.findOne({_id: _id});
+    return (event.commentators || []).length;
+  },
   isLoggedIn: isLoggedIn
 });
 
