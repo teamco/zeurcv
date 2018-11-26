@@ -32,8 +32,8 @@ Template.commentatorsData.events({
 
     const event = events.findOne({_id: this._id});
     if (isLoggedIn()) {
+      const id = currentUser()._id;
       if ((event.commentators || []).length) {
-        const id = currentUser()._id;
         if (event.commentators.indexOf(id) === -1) {
           event.commentators.push(id);
         }
