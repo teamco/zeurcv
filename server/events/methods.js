@@ -10,7 +10,7 @@ Meteor.methods({
    */
   updateEvent(eventData) {
     let event;
-    if (eventData._id) {
+    if (eventData._id && eventData._id !== 'new') {
       event = events.findOne({_id: eventData._id});
       if (event) {
         eventData.data.updatedAt = new Date();

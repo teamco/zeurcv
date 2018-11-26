@@ -1,0 +1,35 @@
+<template name="commentatorsData">
+    {{#each events}}
+        <div class="col-md-3 panel panel-default video-list">
+            <div class="panel-body">
+                <div class="panel-img">
+                    <div>
+                        {{{embed _id}}}
+                    </div>
+                    <div class="time">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <span>{{duration}}</span>
+                    </div>
+                    <div class="time">
+                        <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+                        <span>{{startedAt}}</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <h5>{{description}}</h5>
+                    <a href="/events/{{_id}}">{{name}}</a>
+                </div>
+                <div class="btn-group">
+                    {{#if isLoggedIn}}
+                        <button type="button" class="subscribe btn btn-danger">{{isSubscribed _id}}</button>
+                    {{/if}}
+                    <button type="button" class="view btn btn-success">View</button>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div>{{viewers _id}} views</div>
+                <div>24 commentators</div>
+            </div>
+        </div>
+    {{/each}}
+</template>
