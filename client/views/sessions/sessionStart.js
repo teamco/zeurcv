@@ -14,14 +14,16 @@ Template.sessionStart.helpers({
     return embedFrame(event.embedCode);
   },
   getComments: () => {
-    if (!currentUser()) {
+    const id = getParamId('commentatorId');
+    if (!id) {
       return false;
     }
-    let chunk = comments.findOne({eventId: getParamId('id'), commentatorId: currentUser()._id});
-    if (!chunk) {
-      return '...';
+    let chunk = comments.find({eventId: getParamId('id'), commentatorId: id}).fetch();
+
+    if (!chunk.length) {
+      return 'Comments...';
     }
-    return chunk.data;
+    return chunk[0].data;
   }
 });
 
@@ -59,7 +61,17 @@ Template.commentatorsList.helpers({
     return event.commentators.map(user => getUser(user));
   },
   total: () => {
-
-
+    const event = events.findOne({_id: getParamId('id')});
+    if (!event) {
+      return 0;
+    }
+    return event.commentators.length;
   }
 });
+Template.commentatorsList.events({
+  'click .commentator-item'(e) {
+    e.preventDefault();
+    FlowRouter.go(`/sessions/start/${getParamId('id')}/commentators/${this._id}`);
+  }
+});
+
