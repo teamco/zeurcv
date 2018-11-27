@@ -58,5 +58,4 @@ Meteor.methods({
     settingAction.remove({});
     templates.remove({});
   }
-
 });
