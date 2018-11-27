@@ -2,7 +2,7 @@ import {events} from '../../../model/events.model';
 import {comments} from '../../../model/comment.model';
 import {audioComments} from '../../../model/audioComment.model';
 import {embedFrame} from '../../../lib/youtube';
-import {getParamId} from '../../../lib/utils';
+import {blob2Base64, getParamId} from '../../../lib/utils';
 import {currentUser, getUser, isLoggedIn} from '../../../lib/users';
 
 Template.sessionStart.helpers({
@@ -25,6 +25,18 @@ Template.sessionStart.helpers({
       return 'Comments...';
     }
     return chunk[0].data;
+  },
+  getStream: () => {
+    const id = getParamId('commentatorId');
+    if (!id) {
+      return false;
+    }
+    let chunk = audioComments.find({eventId: getParamId('id'), commentatorId: id}).fetch();
+
+    if (!chunk.length) {
+      return 'Stream...';
+    }
+    $('audio').attr('src', chunk[0].data);
   }
 });
 
@@ -77,18 +89,20 @@ Template.commentatorsList.events({
   }
 });
 
+let recorder;
+
 Template.audioStream.events({
   async 'click .send-audio-stream'(e) {
     e.preventDefault();
-    await startRecording();
+    startRecording();
     $(e.target).addClass('stop-audio-stream');
     $(e.target).removeClass('send-audio-stream');
     $(e.target).addClass(' glyphicon-volume-off');
     $(e.target).removeClass('glyphicon-volume-down');
   },
-  async 'click .stop-audio-stream'(e) {
+  'click .stop-audio-stream'(e) {
     e.preventDefault();
-    await recorder.stop();
+    recorder.stop();
     $(e.target).removeClass('stop-audio-stream');
     $(e.target).addClass('send-audio-stream');
     $(e.target).removeClass(' glyphicon-volume-off');
@@ -96,33 +110,31 @@ Template.audioStream.events({
   }
 });
 
-let recorder;
-
 /**
  * @method startRecording
- * @returns {Promise<void>}
  */
-async function startRecording() {
-  const stream = await navigator.mediaDevices.getUserMedia({audio: true});
-  recorder = new MediaRecorder(stream);
-  recorder.ondataavailable = e => {
-    //chunks.push(e.data);
-    let chunk = audioComments.findOne({eventId: getParamId('id'), commentatorId: currentUser()._id});
-    if (chunk) {
-      chunk.data = e.data;
-      chunk.audioComments.push(chunk.data);
-      audioComments.update({_id: chunk._id}, {$set: chunk});
-    } else {
-      chunk = {
-        audioComments: [],
-        data: e.data,
-        eventId: getParamId('id'),
-        commentatorId: currentUser()._id
+function startRecording() {
+  navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
+    recorder = new MediaRecorder(stream);
+    recorder.ondataavailable = e => {
+      const reader = blob2Base64(e.data);
+      reader.onloadend = () => {
+        let chunk = audioComments.findOne({eventId: getParamId('id'), commentatorId: currentUser()._id});
+        if (chunk) {
+          chunk.data = reader.result;
+          audioComments.update({_id: chunk._id}, {$set: chunk});
+        } else {
+          chunk = {
+            data: reader.result,
+            eventId: getParamId('id'),
+            commentatorId: currentUser()._id
+          };
+          audioComments.insert(chunk);
+        }
       };
-      audioComments.insert(chunk);
-    }
-  };
-  recorder.start();
+    };
+    recorder.start(500);
+  });
 }
 
 Template.audioStream.helpers({});
