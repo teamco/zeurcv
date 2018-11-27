@@ -8,7 +8,6 @@ Template.adminLayout.rendered = function() {
 
   function _iframe() {
     $.initialize('iframe', function() {
-      $(this).attr({width: '90%'});
       const width = $(this).width();
       const height = parseInt(width * 0.56, 10);
       $(this).attr({height: height + 'px'});

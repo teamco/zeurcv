@@ -1,24 +1,35 @@
 <template name="sessionStart">
-    <div class="row">
-        <div class="col-sm-9">
-            {{{event}}}
-            {{#if isLoggedIn}}
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="sizing-addon1">Comment</span>
-                    <span class="input-group-addon audio-stream">
-                        {{> audioStream}}
-                    </span>
-                    <input type="text" class="form-control send-comment"
-                           placeholder="Insert your comments here (trigger on Enter)" aria-describedby="sizing-addon1">
-                </div>
-
-            {{else}}
-                <p>{{getComments}}</p>
-            {{/if}}
-        </div>
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="stream-container">
+        {{{event}}}
         {{#if isLoggedIn}}
+          <video autoplay="true" class="commentator video-cam"></video>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1">Comment</span>
+            <span class="input-group-addon audio-stream">
+              {{> audioStream}}
+            </span>
+            <span class="input-group-addon audio-stream video-stream">
+              <i class="glyphicon glyphicon-facetime-video"></i>
+            </span>
+            <input type="text" class="form-control send-comment"
+                   placeholder="Insert your comments here (trigger on Enter)" aria-describedby="sizing-addon1">
+          </div>
         {{else}}
-            {{> commentatorsList}}
+          <video style="display:{{videoVisible.display}}" autoplay="{{videoVisible.autoplay}}" class="consumer video-cam"></video>
+          <div class="input-group input-group-lg" style="margin-top:{{videoVisible.margin}}">
+            <span class="input-group-addon" id="sizing-addon2">Comment</span>
+            <input type="text" disabled class="form-control send-comment"
+                   value="{{getComments}}"
+                   placeholder="Live comments..." aria-describedby="sizing-addon2">
+          </div>
         {{/if}}
+      </div>
     </div>
+    {{#if isLoggedIn}}
+    {{else}}
+      {{> commentatorsList}}
+    {{/if}}
+  </div>
 </template>
