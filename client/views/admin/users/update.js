@@ -8,21 +8,18 @@ function _filterValueByType(input, type) {
   switch (type) {
     case 'date':
       return new Date(input.value);
-      break;
     case 'checkbox':
       return input.checked;
-      break;
     default:
       return input.value;
-      break;
   }
 }
 
 function _collectData($elements) {
 
-  var data = {};
+  let data = {};
 
-  _.each($elements, function(input) {
+  _.each($elements, input => {
     data[input.name] = _filterValueByType(input, input.dataset.type);
   });
 
@@ -35,12 +32,12 @@ Template.editUser.events({
 
     event.preventDefault();
 
-    var $profile = $('#profile').find('input:enabled, textarea:enabled, select:enabled'),
+    const $profile = $('#profile').find('input:enabled, textarea:enabled, select:enabled'),
         $access = $('#access').find('input:enabled'),
         profile = _collectData($profile),
         access = _collectData($access);
 
-    var userId = getUser()._id;
+    const userId = getUser()._id;
 
     Meteor.call(
         'updateUser', {

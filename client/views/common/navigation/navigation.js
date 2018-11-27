@@ -1,4 +1,4 @@
-import {getUser, isLoggedIn} from '../../../../lib/users';
+import {getUser, isLoggedIn, onAfterLogin} from '../../../../lib/users';
 
 Template.navigation.onRendered = function() {
   // Initialize metisMenu
@@ -14,6 +14,11 @@ Template.navHeader.helpers({
 });
 
 Template.navUserProfile.helpers({
+
+  /**
+   * On after login do something
+   */
+  onAfterLogin: onAfterLogin,
 
   /**
    * Get user image

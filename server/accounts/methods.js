@@ -52,5 +52,13 @@ Meteor.methods({
   destroyUser: function(user) {
     Meteor.users.remove(user._id);
     return user;
+  },
+
+  /**
+   * @method vindicia
+   * @param user
+   */
+  vindicia(user) {
+    console.log(user)
   }
 });

@@ -12,7 +12,7 @@ const providersInfo = {
   linkedin: linkedinProfile
 };
 
-const admins = ['teamco@gmail.com','pavel.sheinfeld@gmail.com'];
+const admins = ['teamco@gmail.com', 'pavel.sheinfeld@gmail.com'];
 const managers = [];
 
 /**
@@ -70,6 +70,10 @@ function _handleLinkedInOpts(opts) {
   }
   return opts;
 }
+
+Accounts.onLogin(() => {
+  // TODO
+});
 
 Accounts.onCreateUser((options, user) => {
   const provider = Object.keys(user.services).shift() || '',

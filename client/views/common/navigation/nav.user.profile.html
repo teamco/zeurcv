@@ -1,24 +1,25 @@
 <template name="navUserProfile">
-    <div class="dropdown profile-element">
-            <span>
-                <img alt="image" class="user-picture img-circle" src="{{userImage user}}"/>
-            </span>
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <span class="clear">
-                <span class="block m-t-xs">
-                    <strong class="font-bold">{{userName user}}{{#if isLoggedIn}} <b class="caret"></b>{{/if}}</strong>
-                </span>
-                {{#if isLoggedIn}}
-                    <span class="text-muted text-xs block">{{user.profile.headline}}</span>
-                {{/if}}
-            </span>
-        </a>
+  {{onAfterLogin}}
+  <div class="dropdown profile-element">
+    <span>
+      <img alt="image" class="user-picture img-circle" src="{{userImage user}}"/>
+    </span>
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+      <span class="clear">
+        <span class="block m-t-xs">
+          <strong class="font-bold">{{userName user}}{{#if isLoggedIn}} <b class="caret"></b>{{/if}}</strong>
+        </span>
         {{#if isLoggedIn}}
-            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                <li><a href="/dashboard/users/{{user._id}}">Profile</a></li>
-                <li class="divider"></li>
-                <li><a id="sign-out-profile" href="#">Logout</a></li>
-            </ul>
+          <span class="text-muted text-xs block">{{user.profile.headline}}</span>
         {{/if}}
-    </div>
+      </span>
+    </a>
+    {{#if isLoggedIn}}
+      <ul class="dropdown-menu animated fadeInRight m-t-xs">
+        <li><a href="/dashboard/users/{{user._id}}">Profile</a></li>
+        <li class="divider"></li>
+        <li><a id="sign-out-profile" href="#">Logout</a></li>
+      </ul>
+    {{/if}}
+  </div>
 </template>
