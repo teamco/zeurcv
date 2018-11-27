@@ -10,10 +10,22 @@
             <div><strong>Created at:</strong> {{formatDate createdAt 'long'}}</div>
             <div><strong>Start at:</strong> {{formatDate startedAt 'long'}}</div>
         </td>
-        <td>{{description}}</td>
+        <td>
+            <img src="{{embed _id}}" alt="{{name}}" />
+            {{description}}
+        </td>
         <td class="text-nowrap">
-            {{> moreInfoLink linkTo='events' id=_id}}
-            <a href="/events/{{_id}}" class="label label-danger delete-event">Delete</a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Actions <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>{{> moreInfoLink linkTo='events' id=_id}}</li>
+                    <li><a href="/sessions/start/{{_id}}" class="btn btn-default btn-xs start-session">Start</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#" class="btn btn-warning btn-xs unsubscribe">Unsubscribe</a></li>
+                </ul>
+            </div>
         </td>
     </tr>
 </template>

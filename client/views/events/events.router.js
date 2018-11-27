@@ -1,6 +1,6 @@
 FlowRouter.route('/events', {
   action: () => BlazeLayout.render('adminLayout', {content: 'eventsData'}),
-  name: 'events'
+  name: 'events manager'
 });
 
 FlowRouter.route('/events/:id', {
