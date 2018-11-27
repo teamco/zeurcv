@@ -1,5 +1,5 @@
 import {is403} from '../../lib/logs';
-import {accountProfile} from '../../model/accountProfile.model';
+import {loginAccount} from '../vindicia/accounts';
 
 Meteor.methods({
 
@@ -55,10 +55,13 @@ Meteor.methods({
   },
 
   /**
-   * @method vindicia
+   * @method vindiciaLogin
    * @param user
    */
-  vindicia(user) {
-    console.log(user)
+  vindiciaLogin(user) {
+    loginAccount(user.profile.email, (account) => {
+      user.vindicia = account;
+      Meteor.users.update({_id: user._id}, user);
+    });
   }
 });
