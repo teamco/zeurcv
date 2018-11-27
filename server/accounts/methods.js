@@ -59,6 +59,9 @@ Meteor.methods({
    * @param user
    */
   vindiciaLogin(user) {
+    if (!user) {
+      return false;
+    }
     loginAccount(user.profile.email, (account) => {
       Meteor.users.update({_id: user._id}, {$set: {vindicia: account}});
     });
