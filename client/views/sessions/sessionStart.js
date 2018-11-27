@@ -38,7 +38,7 @@ Template.sessionStart.events({
         chunk.data = '';
         e.target.value = '';
       }
-      chunk.data += String.fromCharCode(e.keyCode);
+      chunk.data = e.target.value;
       comments.update({_id: chunk._id}, {$set: chunk});
     } else {
       chunk = {
@@ -74,4 +74,57 @@ Template.commentatorsList.events({
     FlowRouter.go(`/sessions/start/${getParamId('id')}/commentators/${this._id}`);
   }
 });
+
+Template.audioStream.events({
+  'click .send-audio-stream'(e) {
+    e.preventDefault();
+    startRecording();
+    $(e.target).addClass("stop-audio-stream");
+    $(e.target).removeClass("send-audio-stream");
+    $(e.target).addClass(" glyphicon-volume-off");
+    $(e.target).removeClass("glyphicon-volume-down");
+  },
+  'click .stop-audio-stream'(e) {
+    e.preventDefault();
+    recorder.stop();
+    $(e.target).removeClass("stop-audio-stream");
+    $(e.target).addClass("send-audio-stream");
+    $(e.target).removeClass(" glyphicon-volume-off");
+    $(e.target).addClass("glyphicon-volume-down");
+  }
+});
+
+
+
+
+
+let recorder;
+
+function startRecording (){
+  navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
+    recorder = new MediaRecorder(stream);
+    recorder.ondataavailable = e => {
+    //chunks.push(e.data);
+    let chunk = audioComments.findOne({eventId: getParamId('id'), commentatorId: currentUser()._id});
+    if (chunk) {
+    chunk.data = e.data;
+    chunk.audioComments.push(chunk.data);
+    audioComments.update({_id: chunk._id}, {$set: chunk});
+  } else {
+  chunk = {
+  audioComments: [],
+  data: e.data,
+  eventId: getParamId('id'),
+  commentatorId: currentUser()._id
+};
+audioComments.insert(chunk);
+}
+};
+})};
+
+
+
+Template.audioStream.helpers({
+
+  });
 

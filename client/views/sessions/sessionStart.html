@@ -5,9 +5,13 @@
             {{#if isLoggedIn}}
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">Comment</span>
+                    <span class="input-group-addon audio-stream">
+                        {{> audioStream}}
+                    </span>
                     <input type="text" class="form-control send-comment"
                            placeholder="Insert your comments here (trigger on Enter)" aria-describedby="sizing-addon1">
                 </div>
+
             {{else}}
                 <p>{{getComments}}</p>
             {{/if}}
