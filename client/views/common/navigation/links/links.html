@@ -1,8 +1,10 @@
 <template name="navLinks">
     {{#if managedByAdmin}}
         {{> menuLink path='/dashboard' icon='home' label='Dashboard' items=adminMenuItems}}
+        {{> menuLink path='/events' icon='calendar' label='Events Manager'}}
     {{/if}}
-    {{> menuLink path='/events' icon='calendar' label='Events'}}
-    {{> menuLink path='/subscribtions' icon='desktop' label='Subscribtions'}}
-    {{> menuLink path='/commentators' icon='user' label='Comentator'}}
+    {{#if isLoggedIn}}
+        {{> menuLink path='/subscriptions' icon='desktop' label='Subscriptions'}}
+    {{/if}}
+    {{> menuLink path='/commentators' icon='user' label='Events'}}
 </template>

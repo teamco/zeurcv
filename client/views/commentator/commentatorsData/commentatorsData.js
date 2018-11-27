@@ -10,8 +10,12 @@ Template.commentatorsData.helpers({
     const url = event.embedCode;
     return thumbnail(url, 'hq');
   },
-  isSubscribed: _id => {
-    return 'Subscribe';
+  isSubscribed: _id => { //pavel
+    const event = events.findOne({_id: _id});
+    if ((event.commentators || []).indexOf((currentUser() || {})._id) === -1) {
+      return 'Subscribe';
+    }
+    return 'Unsubscribe';
   },
   viewers: _id => {
     const event = events.findOne({_id: _id});
@@ -34,6 +38,9 @@ Template.commentatorsData.events({
       if ((event.commentators || []).length) {
         if (event.commentators.indexOf(id) === -1) {
           event.commentators.push(id);
+        } else { //pavel
+          const index = event.commentators.indexOf(id);
+          if (index !== -1) event.commentators.splice(index, 1);
         }
       } else {
         event.commentators = [id];

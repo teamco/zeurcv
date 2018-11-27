@@ -1,0 +1,19 @@
+<template name="subscriptionsData">
+    {{> paginationTable heads=getHeads style='events' pages=pages pagesNav=pagesNav}}
+</template>
+
+<template name="subscriptionsDataItem">
+    <tr>
+        <td>
+            <div><strong>{{name}}</strong></div>
+            <div><strong>Duration:</strong> {{duration}}</div>
+            <div><strong>Created at:</strong> {{formatDate createdAt 'long'}}</div>
+            <div><strong>Start at:</strong> {{formatDate startedAt 'long'}}</div>
+        </td>
+        <td>{{description}}</td>
+        <td class="text-nowrap">
+            {{> moreInfoLink linkTo='events' id=_id}}
+            <a href="/events/{{_id}}" class="label label-danger delete-event">Delete</a>
+        </td>
+    </tr>
+</template>

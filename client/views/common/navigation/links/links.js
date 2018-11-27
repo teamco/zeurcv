@@ -1,6 +1,7 @@
-import {isAdmin} from '../../../../../lib/users';
+import {isAdmin, isLoggedIn} from '../../../../../lib/users';
 
 Template.navLinks.helpers({
+  isLoggedIn: isLoggedIn,
 
   /**
    * @method managedByAdmin
