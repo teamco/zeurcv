@@ -6,6 +6,12 @@ Template.adminLayout.rendered = function() {
     $(this).tooltip({boundary: 'viewport'});
   });
 
+  $.initialize('iframe', function() {
+    const width = $(this).width();
+    const height = width * 0.56;
+    $(this).attr({height: height + 'px'});
+  });
+
   // Minimize menu when screen is less than 768px
   $(window).on('resize load', function() {
 
