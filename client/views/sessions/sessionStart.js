@@ -60,5 +60,6 @@ Template.commentatorsList.helpers({
   },
   total: () => {
 
+
   }
 });
