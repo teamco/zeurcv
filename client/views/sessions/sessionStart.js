@@ -107,6 +107,16 @@ Template.sessionStart.events({
 });
 
 Template.commentatorsList.helpers({
+  isCurrent: _id => {
+    return _id === getParamId('commentatorId') ? 'current' : '';
+  },
+  connectedStreams: () => {
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    return parseInt(getRandomArbitrary(0, 30), 10);
+  },
   commentators: () => {
     const event = events.findOne({_id: getParamId('id')});
     if (!event) {

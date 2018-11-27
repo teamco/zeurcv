@@ -6,8 +6,8 @@
             </div>
             <div class="panel-body pre-scrollable">
                 {{#each commentators}}
-                  <div class="commentator-item">
-                      {{profile.name}} (32)
+                  <div class="commentator-item {{isCurrent _id}}">
+                      {{profile.name}} ({{connectedStreams}})
                   </div>
                 {{/each}}
             </div>
