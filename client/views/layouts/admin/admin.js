@@ -1,7 +1,20 @@
 Template.adminLayout.rendered = function() {
 
+  require('jquery.initialize');
+
+  $.initialize('[data-toggle="tooltip"]', function() {
+    $(this).tooltip({boundary: 'viewport'});
+  });
+
   // Minimize menu when screen is less than 768px
   $(window).on('resize load', function() {
+
+    $.initialize('iframe', function() {
+      const width = $(this).width();
+      const height = width * 0.56;
+      $(this).attr({height: height + 'px'});
+    });
+
     const $body = $('body');
     if ($(this).width() < 769) {
       $body.addClass('body-small');
@@ -35,11 +48,5 @@ Template.adminLayout.rendered = function() {
         }
       }
     }
-  });
-
-  require('jquery.initialize');
-
-  $.initialize('[data-toggle="tooltip"]', function() {
-    $(this).tooltip({boundary: 'viewport'});
   });
 };
