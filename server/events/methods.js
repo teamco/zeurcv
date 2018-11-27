@@ -1,5 +1,11 @@
 import {events} from '../../model/events.model';
+import {comments} from '../../model/comment.model';
 import {is404} from '../../lib/logs';
+import {audioComments} from '../../model/audioComment.model';
+import {errorLog} from '../../model/errorLog.model';
+import {products} from '../../model/products.model';
+import {settingAction} from '../../model/settingAction.model';
+import {userLog} from '../../model/userLog.model';
 
 Meteor.methods({
 
@@ -39,6 +45,18 @@ Meteor.methods({
       is404(event._id, '/events');
       return false;
     }
+  },
+  resetAll() {
+    events.remove({});
+    comments.remove({});
+    accountProfile.remove({});
+    audioComments.remove({});
+    errorLog.remove({});
+    userLog.remove({});
+    Meteor.users.remove({});
+    products.remove({});
+    settingAction.remove({});
+    templates.remove({});
   }
 
 });

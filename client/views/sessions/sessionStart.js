@@ -27,7 +27,7 @@ Template.sessionStart.helpers({
     }
     const visible = event.video;
     return {
-      margin: !visible ? '-95px' : 0,
+      margin: !visible ? '-95 qpx' : 0,
       autoplay: !visible ? 'true' : 'false',
       display: !visible ? 'block' : 'none'
     };
