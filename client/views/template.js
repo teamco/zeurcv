@@ -80,8 +80,9 @@ Blaze.TemplateInstance.prototype.parentTemplate = function(levels) {
 };
 
 Template.registerHelper('formatDate', (date, format) => {
+  // Short type format
+  format = format || 'MM-DD-YYYY H:mm:ss';
   if (format === 'long') format = 'MMMM DD, YYYY H:mm:ss';
-  if (format === 'short') format = 'MM-DD-YYYY H:mm:ss';
   return moment(date).format(format);
 });
 

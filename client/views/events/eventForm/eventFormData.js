@@ -1,6 +1,8 @@
 import {subscribe} from '../../template';
 import {throwError} from '../../../../lib/logs';
 import {getParamId} from '../../../../lib/utils';
+import {events} from '../../../../model/events.model';
+import {embedFrame} from '../../../../lib/youtube';
 
 /**
  * @method _filterValueByType
@@ -46,7 +48,8 @@ Template.eventFormData.events({
     const $iframe = $('#inject-embed-code .iframe');
 
     if (event.target.innerText === 'Preview') {
-      $iframe.html($('[name="embedCode"]').val());
+      const iframe = embedFrame($('[name="embedCode"]').val());
+      $iframe.html(iframe);
       event.target.innerText = 'Hide';
     } else {
       $iframe.html('');

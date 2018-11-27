@@ -4,7 +4,7 @@
             <div class="panel-body">
                 <div class="panel-img">
                     <div>
-                        {{{embed _id}}}
+                        <img src="{{embed _id}}" alt="{{name}}" />
                     </div>
                     <div class="time">
                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="info">
                     <a href="/events/{{_id}}">{{name}}</a>
-                    <h5 title="{{description}}">{{description}}</h5>
+                    <h5 data-toggle="tooltip" data-placement="top" title="{{description}}">{{description}}</h5>
                 </div>
                 <div class="btn-group">
                     {{#if isLoggedIn}}

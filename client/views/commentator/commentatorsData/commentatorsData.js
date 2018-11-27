@@ -1,16 +1,14 @@
 import {events} from '../../../../model/events.model';
 import {subscribe} from '../../template';
 import {currentUser, isLoggedIn} from '../../../../lib/users';
+import {thumbnail} from '../../../../lib/youtube';
 
 Template.commentatorsData.helpers({
   events: () => events.find({}).fetch(),
   embed: _id => {
-    const regex = /https:\/\/www.youtube.com\/watch\?v=/;
     const event = events.findOne({_id: _id});
     const url = event.embedCode;
-    const embedCode = url.replace(regex, '');
-    const iframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${embedCode}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-    return iframe;
+    return thumbnail(url, 'hq');
   },
   isSubscribed: _id => {
     return 'Subscribe';

@@ -5,7 +5,16 @@
 .video-list {
   margin-right: 1em;
 
+  .tooltip-inner {
+    max-width: 400px;
+    text-align: justify;
+  }
+
   .panel-img {
+
+    img {
+      width: 100%;
+    }
 
     div:first-child {
       background-color: #dedede;
@@ -16,11 +25,12 @@
     }
   }
 
-  .info{
-    h5{
+  .info {
+    h5 {
       height: 27px;
       overflow: hidden;
     }
+
     h5::after {
       content: "...";
     }
