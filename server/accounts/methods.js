@@ -60,8 +60,7 @@ Meteor.methods({
    */
   vindiciaLogin(user) {
     loginAccount(user.profile.email, (account) => {
-      user.vindicia = account;
-      Meteor.users.update({_id: user._id}, user);
+      Meteor.users.update({_id: user._id}, {$set: {vindicia: account}});
     });
   }
 });
