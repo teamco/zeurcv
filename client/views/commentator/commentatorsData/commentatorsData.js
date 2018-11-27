@@ -65,6 +65,7 @@ Template.commentatorsData.events({
         event.viewers = [data];
       }
       events.update({_id: this._id}, {$set: event});
+      FlowRouter.go('/sessions/start/' + this._id);
     });
   }
 });
