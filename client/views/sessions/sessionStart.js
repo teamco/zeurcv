@@ -113,7 +113,7 @@ Template.commentatorsList.helpers({
       return Math.random() * (max - min) + min;
     }
 
-    return parseInt(getRandomArbitrary(0, 30), 10);
+    return parseInt(getRandomArbitrary(1, 30), 10);
   },
   commentators: () => {
     const event = events.findOne({_id: getParamId('id')});
