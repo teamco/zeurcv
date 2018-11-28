@@ -1,19 +1,25 @@
 <template name="commentatorsList">
-    <div class="col-sm-3">
-        <div class="panel panel-default commentators">
-            <div class="panel-heading">
-                Choose your Commentator
+  <div class="col-sm-3">
+    <div class="panel panel-default commentators">
+      <div class="panel-heading">
+        Choose your Commentator
+      </div>
+      <div class="panel-body pre-scrollable">
+        {{#each commentators}}
+          {{#if isCurrent _id}}
+            <div class="commentator-item current">
+              {{profile.name}} ({{connectedStreams}})
             </div>
-            <div class="panel-body pre-scrollable">
-                {{#each commentators}}
-                  <div class="commentator-item {{isCurrent _id}}">
-                      {{profile.name}} ({{connectedStreams}})
-                  </div>
-                {{/each}}
+          {{else}}
+            <div class="commentator-item">
+              {{profile.name}} ({{connectedStreams}})
             </div>
-            <div class="panel-footer">
-                Total: {{total}} commentators
-            </div>
-        </div>
+          {{/if}}
+        {{/each}}
+      </div>
+      <div class="panel-footer">
+        Total: {{total}} commentators
+      </div>
     </div>
+  </div>
 </template>

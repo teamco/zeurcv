@@ -107,9 +107,7 @@ Template.sessionStart.events({
 });
 
 Template.commentatorsList.helpers({
-  isCurrent: _id => {
-    return _id === getParamId('commentatorId') ? 'current' : '';
-  },
+  isCurrent: _id => _id === getParamId('commentatorId'),
   connectedStreams: () => {
     function getRandomArbitrary(min, max) {
       return Math.random() * (max - min) + min;
@@ -136,6 +134,7 @@ Template.commentatorsList.helpers({
 Template.commentatorsList.events({
   'click .commentator-item'(e) {
     e.preventDefault();
+    $(e.target).addClass('current');
     FlowRouter.go(`/sessions/start/${getParamId('id')}/commentators/${this._id}`);
   }
 });
