@@ -1,5 +1,6 @@
 import {is403} from '../../lib/logs';
 import {loginAccount} from '../vindicia/accounts';
+import {vindiciaModel} from '../../model/products.model';
 
 Meteor.methods({
 
@@ -63,7 +64,15 @@ Meteor.methods({
       return false;
     }
     loginAccount(user.profile.email, (account) => {
-      Meteor.users.update({_id: user._id}, {$set: {vindicia: account}});
+      const model = vindiciaModel.find({userId: user._id}).fetch();
+      if (model.length) {
+
+      } else {
+        vindiciaModel.insert({
+          userId: user._id,
+          account: account
+        })
+      }
     });
   }
 });

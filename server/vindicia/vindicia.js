@@ -1,6 +1,6 @@
 import {HTTP} from 'meteor/http';
 
-export const callAPI = (method, path, post_data, callback) => {
+export const callAPI = function(method, path, post_data, callback) {
   const host = 'https://api.prodtest.vindicia.com/';
 
   // An object of options to indicate where to post to
@@ -23,5 +23,15 @@ export const callAPI = (method, path, post_data, callback) => {
     });
   } catch (e) {
     callback('Error ' + e, null);
+  }
+};
+
+export const setStatus = (object, isNew) => {
+  if (object) {
+    if (isNew) {
+      object.status = 'new';
+    } else {
+      object.status = 'existing';
+    }
   }
 };

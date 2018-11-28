@@ -120,7 +120,13 @@ Template.commentatorsList.helpers({
     if (!event) {
       return [];
     }
-    return event.commentators.map(user => getUser(user));
+    return event.commentators.map(user => {
+      const account = getUser(user);
+      if (!account.profile.name) {
+        account.profile.name = 'Guest';
+      }
+      return account;
+    });
   },
   total: () => {
     const event = events.findOne({_id: getParamId('id')});
@@ -134,6 +140,7 @@ Template.commentatorsList.helpers({
 Template.commentatorsList.events({
   'click .commentator-item'(e) {
     e.preventDefault();
+    $('.commentator-item').removeClass('current');
     $(e.target).addClass('current');
     FlowRouter.go(`/sessions/start/${getParamId('id')}/commentators/${this._id}`);
   }
