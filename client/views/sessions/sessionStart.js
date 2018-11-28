@@ -1,8 +1,7 @@
 import {events} from '../../../model/events.model';
 import {comments} from '../../../model/comment.model';
 import {audioComments} from '../../../model/audioComment.model';
-import {embedFrame} from '../../../lib/youtube';
-import {blob2Base64, getParamId} from '../../../lib/utils';
+import {blob2Base64, embedVideo, getParamId} from '../../../lib/utils';
 import {currentUser, getUser, isLoggedIn} from '../../../lib/users';
 
 Template.sessionStart.onRendered(() => {
@@ -38,7 +37,7 @@ Template.sessionStart.helpers({
     if (!event) {
       return 'Loading...';
     }
-    return embedFrame(event.embedCode);
+    return embedVideo(event.embedCode);
   },
   getComments: () => {
     const id = getParamId('commentatorId');
