@@ -1,14 +1,14 @@
 import {events} from '../../../../model/events.model';
 import {subscribe} from '../../template';
+import {getThumbnail} from '../../../../lib/utils';
 import {currentUser, isLoggedIn} from '../../../../lib/users';
-import {thumbnail} from '../../../../lib/youtube';
 
 Template.commentatorsData.helpers({
   events: () => events.find({}).fetch(),
   embed: _id => {
     const event = events.findOne({_id: _id});
     const url = event.embedCode;
-    return thumbnail(url, 'hq');
+    return getThumbnail(url, 'hq');
   },
   isSubscribed: _id => { //pavel
     const event = events.findOne({_id: _id});

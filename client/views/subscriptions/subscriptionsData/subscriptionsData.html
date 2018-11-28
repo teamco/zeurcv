@@ -1,31 +1,32 @@
 <template name="subscriptionsData">
-    {{> paginationTable heads=getHeads style='events' pages=pages pagesNav=pagesNav}}
+  {{> paginationTable heads=getHeads style='events' pages=pages pagesNav=pagesNav}}
 </template>
 
 <template name="subscriptionsDataItem">
-    <tr>
-        <td>
-            <div><strong>{{name}}</strong></div>
-            <div><strong>Duration:</strong> {{duration}}</div>
-            <div><strong>Created at:</strong> {{formatDate createdAt 'long'}}</div>
-            <div><strong>Start at:</strong> {{formatDate startedAt 'long'}}</div>
-        </td>
-        <td>
-            <img src="{{embed _id}}" alt="{{name}}" />
-            {{description}}
-        </td>
-        <td class="text-nowrap">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Actions <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li>{{> moreInfoLink linkTo='events' id=_id}}</li>
-                    <li><a href="/sessions/start/{{_id}}" class="btn btn-default btn-xs start-session">Start</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#" class="btn btn-warning btn-xs unsubscribe">Unsubscribe</a></li>
-                </ul>
-            </div>
-        </td>
-    </tr>
+  <tr>
+    <td>
+      <div><strong>{{name}}</strong></div>
+      <div><strong>Duration:</strong> {{duration}}</div>
+      <div><strong>Created at:</strong> {{formatDate createdAt 'long'}}</div>
+      <div><strong>Start at:</strong> {{formatDate startedAt 'long'}}</div>
+    </td>
+    <td class="embed-content">
+      {{{embed _id}}}
+      {{description}}
+    </td>
+    <td class="text-nowrap">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+          Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>{{> moreInfoLink linkTo='events' id=_id}}</li>
+          <li><a href="/sessions/start/{{_id}}" class="btn btn-default btn-xs start-session">Start</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#" class="btn btn-warning btn-xs unsubscribe">Unsubscribe</a></li>
+        </ul>
+      </div>
+    </td>
+  </tr>
 </template>

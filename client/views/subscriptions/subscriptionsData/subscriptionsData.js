@@ -1,8 +1,8 @@
 import {subscriptionsPages} from '../../../../model/subscriptions.model';
 import {subscribe} from '../../template';
 import {events} from '../../../../model/events.model';
-import {thumbnail} from '../../../../lib/youtube';
 import {currentUser} from '../../../../lib/users';
+import {getThumbnail} from '../../../../lib/utils';
 
 export const HEADS = ['Info', 'Description', 'Action'];
 
@@ -21,7 +21,7 @@ Template.subscriptionsDataItem.helpers({
   embed: _id => {
     const event = events.findOne({_id: _id});
     const url = event.embedCode;
-    return thumbnail(url, 'hq');
+    return getThumbnail(url, 'hq');
   }
 });
 

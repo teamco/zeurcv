@@ -16,6 +16,11 @@
       width: 100%;
     }
 
+    iframe {
+      width: 100%;
+      height: auto;
+    }
+
     div:first-child {
       background-color: #dedede;
     }
@@ -49,8 +54,10 @@
   }
 }
 
-.table.events td > img {
+.table.events td > img,
+.table.events td > iframe {
   width: 15em;
+  height: auto;
   float: left;
   margin-right: 1em;
   margin-bottom: 1em;
